@@ -10,7 +10,7 @@ public class BankcardDTO {
 	private String bank;
 	
 	public BankcardDTO() {
-		super();
+		
 	}
 	
 	public int getBankcardId() {
