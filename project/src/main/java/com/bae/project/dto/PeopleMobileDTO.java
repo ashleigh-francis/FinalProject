@@ -12,10 +12,26 @@ public class PeopleMobileDTO {
 	private String phoneNumber;
 	private String network;
 	
+	private MobileCallRecordsDTO callRecords;
 	
+
 	public PeopleMobileDTO() {
 	}
 
+	public PeopleMobileDTO(int id, String forename, String surname, String dateOfBirth, String address, String town,
+			String postcode, String phoneNumber, String network, MobileCallRecordsDTO callRecords) {
+		super();
+		this.id = id;
+		this.forename = forename;
+		this.surname = surname;
+		this.dateOfBirth = dateOfBirth;
+		this.address = address;
+		this.town = town;
+		this.postcode = postcode;
+		this.phoneNumber = phoneNumber;
+		this.network = network;
+		this.callRecords = callRecords;
+	}
 
 	public int getId() {
 		return id;
@@ -105,7 +121,13 @@ public class PeopleMobileDTO {
 	public void setNetwork(String network) {
 		this.network = network;
 	}
-	
-	
+
+	public MobileCallRecordsDTO getCallRecords() {
+		return callRecords;
+	}
+
+	public void setCallRecords(MobileCallRecordsDTO callRecords) {
+		this.callRecords = callRecords;
+	}
 	
 }

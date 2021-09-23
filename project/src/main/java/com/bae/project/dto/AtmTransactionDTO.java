@@ -9,7 +9,21 @@ public class AtmTransactionDTO {
 	private float amount;
 	private int id;
 	
+	private AtmPointDTO atmPoint;
+	
 	public AtmTransactionDTO() {
+	}
+
+	public AtmTransactionDTO(String timestamp, int atmId, long bankCardNumber, String type, float amount, int id,
+			AtmPointDTO atmPoint) {
+		super();
+		this.timestamp = timestamp;
+		this.atmId = atmId;
+		this.bankCardNumber = bankCardNumber;
+		this.type = type;
+		this.amount = amount;
+		this.id = id;
+		this.atmPoint = atmPoint;
 	}
 
 	public String getTimestamp() {
@@ -59,7 +73,13 @@ public class AtmTransactionDTO {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	
 
+	public AtmPointDTO getAtmPoint() {
+		return atmPoint;
+	}
+
+	public void setAtmPoint(AtmPointDTO atmPoint) {
+		this.atmPoint = atmPoint;
+	}
+	
 }

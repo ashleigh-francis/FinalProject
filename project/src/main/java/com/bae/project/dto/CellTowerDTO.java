@@ -1,6 +1,6 @@
 package com.bae.project.dto;
 
-public class CellTowerIdDTO {
+public class CellTowerDTO {
 
 	private int cellTowerId;
 	private String operator;
@@ -9,7 +9,7 @@ public class CellTowerIdDTO {
 	private double longitude;
 	private int tableId;
 	
-	public CellTowerIdDTO() {
+	public CellTowerDTO() {
 	}
 
 	public int getCellTowerId() {

@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class CellTowerId {
+public class CellTower {
 	
 	private int cellTowerId;
 	private String operator;
@@ -17,12 +17,12 @@ public class CellTowerId {
 	private int tableId;
 	
 	
-	public CellTowerId() {
+	public CellTower() {
 		super();
 	}
 
 
-	public CellTowerId(int cellTowerId, String operator, int type, double latitude, double longitude, int tableId) {
+	public CellTower(int cellTowerId, String operator, int type, double latitude, double longitude, int tableId) {
 		super();
 		this.cellTowerId = cellTowerId;
 		this.operator = operator;
@@ -47,7 +47,7 @@ public class CellTowerId {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		CellTowerId other = (CellTowerId) obj;
+		CellTower other = (CellTower) obj;
 		return cellTowerId == other.cellTowerId
 				&& Double.doubleToLongBits(latitude) == Double.doubleToLongBits(other.latitude)
 				&& Double.doubleToLongBits(longitude) == Double.doubleToLongBits(other.longitude)

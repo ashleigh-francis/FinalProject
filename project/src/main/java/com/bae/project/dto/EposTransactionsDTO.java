@@ -9,10 +9,22 @@ public class EposTransactionsDTO {
 	private float amount;
 	private int tableId;
 	
+	private EposDTO epos;	
 	
 	public EposTransactionsDTO() {
 	}
 
+	public EposTransactionsDTO(String timestamp, int eposId, long bankCardNumber, int payeeAccount, float amount,
+			int tableId, EposDTO epos) {
+		super();
+		this.timestamp = timestamp;
+		this.eposId = eposId;
+		this.bankCardNumber = bankCardNumber;
+		this.payeeAccount = payeeAccount;
+		this.amount = amount;
+		this.tableId = tableId;
+		this.epos = epos;
+	}
 
 	public String getTimestamp() {
 		return timestamp;
@@ -72,8 +84,13 @@ public class EposTransactionsDTO {
 	public void setTableId(int tableId) {
 		this.tableId = tableId;
 	}
-	
-	
-	
+
+	public EposDTO getEpos() {
+		return epos;
+	}
+
+	public void setEpos(EposDTO epos) {
+		this.epos = epos;
+	}
 	
 }
