@@ -20,6 +20,18 @@ public class Citizen {
 		
 	}
 	
+	public Citizen(int citizenID, String forenames, String surname, String homeAddress, String dateOfBirth,
+			String placeOfBirth, String sex) {
+		super();
+		this.citizenID = citizenID;
+		this.forenames = forenames;
+		this.surname = surname;
+		this.homeAddress = homeAddress;
+		this.dateOfBirth = dateOfBirth;
+		this.placeOfBirth = placeOfBirth;
+		this.sex = sex;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(citizenID, dateOfBirth, forenames, homeAddress, placeOfBirth, sex, surname);
