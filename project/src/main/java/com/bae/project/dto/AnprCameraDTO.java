@@ -8,7 +8,6 @@ public class AnprCameraDTO {
 	private double longitude;
 	
 	public AnprCameraDTO() {
-		super();
 	}
 
 	public int getAnprId() {
