@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class EpsoTransaction {
+public class EposTransactions {
 	
 	@Id
 	private String timestamp;
@@ -16,7 +16,7 @@ public class EpsoTransaction {
 	private int tableId;
 	
 	
-	public EpsoTransaction(String timestamp, int eposId, long bankCardNumber, int payeeAccount, float amount,
+	public EposTransactions(String timestamp, int eposId, long bankCardNumber, int payeeAccount, float amount,
 			int tableId) {
 		super();
 		this.timestamp = timestamp;
@@ -27,7 +27,7 @@ public class EpsoTransaction {
 		this.tableId = tableId;
 	}
 	
-	public EpsoTransaction() {
+	public EposTransactions() {
 		super();
 	}
 
@@ -79,7 +79,7 @@ public class EpsoTransaction {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		EpsoTransaction other = (EpsoTransaction) obj;
+		EposTransactions other = (EposTransactions) obj;
 		return Float.floatToIntBits(amount) == Float.floatToIntBits(other.amount)
 				&& bankCardNumber == other.bankCardNumber && eposId == other.eposId
 				&& payeeAccount == other.payeeAccount && tableId == other.tableId
