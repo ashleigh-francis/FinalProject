@@ -9,10 +9,26 @@ public class BankcardDTO {
 	private int accountNumber;
 	private String bank;
 	
+	private EposTransactionsDTO eposTransaction;
+	private AtmTransactionDTO atmTransaction;
+	
 	public BankcardDTO() {
 		
 	}
 	
+	public BankcardDTO(int bankcardId, long cardNumber, String sortCode, int bankAccountId, int accountNumber,
+			String bank, EposTransactionsDTO eposTransaction, AtmTransactionDTO atmTransaction) {
+		super();
+		this.bankcardId = bankcardId;
+		this.cardNumber = cardNumber;
+		this.sortCode = sortCode;
+		this.bankAccountId = bankAccountId;
+		this.accountNumber = accountNumber;
+		this.bank = bank;
+		this.eposTransaction = eposTransaction;
+		this.atmTransaction = atmTransaction;
+	}
+
 	public int getBankcardId() {
 		return bankcardId;
 	}
@@ -49,6 +65,21 @@ public class BankcardDTO {
 	public void setBank(String bank) {
 		this.bank = bank;
 	}
-	
+
+	public EposTransactionsDTO getEposTransaction() {
+		return eposTransaction;
+	}
+
+	public void setEposTransaction(EposTransactionsDTO eposTransaction) {
+		this.eposTransaction = eposTransaction;
+	}
+
+	public AtmTransactionDTO getAtmTransaction() {
+		return atmTransaction;
+	}
+
+	public void setAtmTransaction(AtmTransactionDTO atmTransaction) {
+		this.atmTransaction = atmTransaction;
+	}
 	
 }

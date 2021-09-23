@@ -14,9 +14,29 @@ public class VehicleRegistrationDTO {
 	private String dateOfBirth;
 	private String driverLicenceID;
 	
+	private VehicleObservationDTO vehicleObvs;
+	
 	public VehicleRegistrationDTO() {
 	}
 	
+	public VehicleRegistrationDTO(int registrationID, String registrationDate, String vehicleRegistrationNo,
+			String make, String model, String colour, String forenames, String surname, String address,
+			String dateOfBirth, String driverLicenceID, VehicleObservationDTO vehicleObvs) {
+		super();
+		this.registrationID = registrationID;
+		this.registrationDate = registrationDate;
+		this.vehicleRegistrationNo = vehicleRegistrationNo;
+		this.make = make;
+		this.model = model;
+		this.colour = colour;
+		this.forenames = forenames;
+		this.surname = surname;
+		this.address = address;
+		this.dateOfBirth = dateOfBirth;
+		this.driverLicenceID = driverLicenceID;
+		this.vehicleObvs = vehicleObvs;
+	}
+
 	public int getRegistrationID() {
 		return registrationID;
 	}
@@ -82,6 +102,14 @@ public class VehicleRegistrationDTO {
 	}
 	public void setDriverLicenceID(String driverLicenceID) {
 		this.driverLicenceID = driverLicenceID;
+	}
+
+	public VehicleObservationDTO getVehicleObvs() {
+		return vehicleObvs;
+	}
+
+	public void setVehicleObvs(VehicleObservationDTO vehicleObvs) {
+		this.vehicleObvs = vehicleObvs;
 	}
 	
 	

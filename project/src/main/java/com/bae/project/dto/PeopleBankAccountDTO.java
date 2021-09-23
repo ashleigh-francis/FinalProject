@@ -10,10 +10,23 @@ public class PeopleBankAccountDTO {
 	private String dateOfBirth;
 	private String homeAddress;
 	
+	private BankcardDTO bankcard;	
 	
 	public PeopleBankAccountDTO() {
 	}
 
+	public PeopleBankAccountDTO(int bankAccountId, int accountNumber, String bank, String forenames, String surname,
+			String dateOfBirth, String homeAddress, BankcardDTO bankcard) {
+		super();
+		this.bankAccountId = bankAccountId;
+		this.accountNumber = accountNumber;
+		this.bank = bank;
+		this.forenames = forenames;
+		this.surname = surname;
+		this.dateOfBirth = dateOfBirth;
+		this.homeAddress = homeAddress;
+		this.bankcard = bankcard;
+	}
 
 	public int getBankAccountId() {
 		return bankAccountId;
@@ -79,11 +92,16 @@ public class PeopleBankAccountDTO {
 		return homeAddress;
 	}
 
-
 	public void setHomeAddress(String homeAddress) {
 		this.homeAddress = homeAddress;
 	}
-	
-	
+
+	public BankcardDTO getBankcard() {
+		return bankcard;
+	}
+
+	public void setBankcard(BankcardDTO bankcard) {
+		this.bankcard = bankcard;
+	}
 
 }
