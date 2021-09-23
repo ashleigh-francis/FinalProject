@@ -17,7 +17,7 @@ public class Citizen {
 	private String sex;
 	
 	public Citizen() {
-		
+		super();
 	}
 	
 	public Citizen(int citizenID, String forenames, String surname, String homeAddress, String dateOfBirth,
