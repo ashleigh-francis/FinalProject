@@ -10,7 +10,6 @@ public class AtmTransactionDTO {
 	private int id;
 	
 	public AtmTransactionDTO() {
-		super();
 	}
 
 	public String getTimestamp() {

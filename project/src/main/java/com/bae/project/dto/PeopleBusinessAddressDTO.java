@@ -9,7 +9,6 @@ public class PeopleBusinessAddressDTO {
 	private String businessAddress;
 	
 	public PeopleBusinessAddressDTO() {
-		super();
 	}
 
 	public String getPersonName() {

@@ -11,7 +11,6 @@ public class EposDTO {
 	private int tableId;
 	
 	public EposDTO() {
-		super();
 	}
 
 	public int getId() {

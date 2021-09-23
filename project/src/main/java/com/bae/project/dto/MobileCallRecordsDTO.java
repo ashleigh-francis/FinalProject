@@ -11,7 +11,6 @@ public class MobileCallRecordsDTO {
 	
 	
 	public MobileCallRecordsDTO() {
-		super();
 	}
 
 

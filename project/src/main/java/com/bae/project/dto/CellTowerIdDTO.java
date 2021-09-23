@@ -10,7 +10,6 @@ public class CellTowerIdDTO {
 	private int tableId;
 	
 	public CellTowerIdDTO() {
-		super();
 	}
 
 	public int getCellTowerId() {
