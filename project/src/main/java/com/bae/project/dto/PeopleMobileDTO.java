@@ -1,14 +1,7 @@
-package com.bae.project.data;
+package com.bae.project.dto;
 
-import java.util.Objects;
+public class PeopleMobileDTO {
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-@Entity
-public class PeopleMobile {
-	
-	@Id
 	private int id;
 	private String forename;
 	private String surname;
@@ -20,45 +13,7 @@ public class PeopleMobile {
 	private String network;
 	
 	
-	public PeopleMobile() {
-		super();
-	}
-
-
-	public PeopleMobile(int id, String forename, String surname, String dateOfBirth, String address, String town,
-			String postcode, String phoneNumber, String network) {
-		super();
-		this.id = id;
-		this.forename = forename;
-		this.surname = surname;
-		this.dateOfBirth = dateOfBirth;
-		this.address = address;
-		this.town = town;
-		this.postcode = postcode;
-		this.phoneNumber = phoneNumber;
-		this.network = network;
-	}
-
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(address, dateOfBirth, forename, id, network, phoneNumber, postcode, surname, town);
-	}
-
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		PeopleMobile other = (PeopleMobile) obj;
-		return Objects.equals(address, other.address) && Objects.equals(dateOfBirth, other.dateOfBirth)
-				&& Objects.equals(forename, other.forename) && id == other.id && Objects.equals(network, other.network)
-				&& Objects.equals(phoneNumber, other.phoneNumber) && Objects.equals(postcode, other.postcode)
-				&& Objects.equals(surname, other.surname) && Objects.equals(town, other.town);
+	public PeopleMobileDTO() {
 	}
 
 
@@ -153,7 +108,4 @@ public class PeopleMobile {
 	
 	
 	
-	
-	
-
 }

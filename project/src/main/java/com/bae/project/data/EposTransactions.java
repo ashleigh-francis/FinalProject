@@ -8,12 +8,12 @@ import javax.persistence.Id;
 public class EposTransactions {
 	
 	@Id
+	private int tableId;
 	private String timestamp;
 	private int eposId;
 	private long bankCardNumber;
 	private int payeeAccount;
 	private float amount;
-	private int tableId;
 	
 	
 	public EposTransactions(String timestamp, int eposId, long bankCardNumber, int payeeAccount, float amount,
