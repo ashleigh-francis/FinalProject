@@ -1,9 +1,11 @@
 package com.bae.project.data;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class CellTower {
@@ -16,6 +18,8 @@ public class CellTower {
 	@Id
 	private int tableId;
 	
+	@OneToMany
+	private List<MobileCallRecords> mobileCallRecords;
 	
 	public CellTower() {
 		super();
@@ -112,6 +116,23 @@ public class CellTower {
 
 	public void setTableId(int tableId) {
 		this.tableId = tableId;
+	}
+
+
+	public List<MobileCallRecords> getMobileCallRecords() {
+		return mobileCallRecords;
+	}
+
+
+	public void setMobileCallRecords(List<MobileCallRecords> mobileCallRecords) {
+		this.mobileCallRecords = mobileCallRecords;
+	}
+
+
+	@Override
+	public String toString() {
+		return "CellTower [cellTowerId=" + cellTowerId + ", operator=" + operator + ", type=" + type + ", latitude="
+				+ latitude + ", longitude=" + longitude + ", tableId=" + tableId + "]";
 	}
 
 

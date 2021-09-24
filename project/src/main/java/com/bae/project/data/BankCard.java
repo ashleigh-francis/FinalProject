@@ -1,10 +1,12 @@
 package com.bae.project.data;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class BankCard {
@@ -16,9 +18,13 @@ public class BankCard {
 	private int bankAccountId;
 	private int accountNumber;
 	private String bank;
+	
 	@ManyToOne
 	private PeopleBankAccount bankAccount;
-	
+	@OneToMany
+	private List<EposTransactions> eposTrans;
+	@OneToMany
+	private List<AtmTransaction> AtmTrans;
 	
 	public BankCard(int bankcardId, long cardNumber, String sortCode, int bankAccountId, int accountNumber,
 			String bank) {
@@ -33,6 +39,24 @@ public class BankCard {
 	
 	public BankCard() {
 		super();
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(accountNumber, bank, bankAccountId, bankcardId, cardNumber, sortCode);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BankCard other = (BankCard) obj;
+		return accountNumber == other.accountNumber && Objects.equals(bank, other.bank)
+				&& bankAccountId == other.bankAccountId && bankcardId == other.bankcardId
+				&& cardNumber == other.cardNumber && Objects.equals(sortCode, other.sortCode);
 	}
 
 	public int getBankcardId() {
@@ -71,22 +95,35 @@ public class BankCard {
 	public void setBank(String bank) {
 		this.bank = bank;
 	}
-	@Override
-	public int hashCode() {
-		return Objects.hash(accountNumber, bank, bankAccountId, bankcardId, cardNumber, sortCode);
+
+	public PeopleBankAccount getBankAccount() {
+		return bankAccount;
 	}
+
+	public void setBankAccount(PeopleBankAccount bankAccount) {
+		this.bankAccount = bankAccount;
+	}
+
+	public List<EposTransactions> getEposTrans() {
+		return eposTrans;
+	}
+
+	public void setEposTrans(List<EposTransactions> eposTrans) {
+		this.eposTrans = eposTrans;
+	}
+
+	public List<AtmTransaction> getAtmTrans() {
+		return AtmTrans;
+	}
+
+	public void setAtmTrans(List<AtmTransaction> atmTrans) {
+		AtmTrans = atmTrans;
+	}
+
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		BankCard other = (BankCard) obj;
-		return accountNumber == other.accountNumber && Objects.equals(bank, other.bank)
-				&& bankAccountId == other.bankAccountId && bankcardId == other.bankcardId
-				&& cardNumber == other.cardNumber && Objects.equals(sortCode, other.sortCode);
+	public String toString() {
+		return "BankCard [bankcardId=" + bankcardId + ", cardNumber=" + cardNumber + ", sortCode=" + sortCode
+				+ ", bankAccountId=" + bankAccountId + ", accountNumber=" + accountNumber + ", bank=" + bank + "]";
 	}
 	
 }

@@ -5,6 +5,7 @@ import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -19,12 +20,15 @@ public class PeopleBankAccount {
 	private String dateOfBirth;
 	private String homeAddress;
 	
+	@ManyToOne
+	private Citizen citizen;
 	@OneToMany
 	private List<BankCard> bankcards;
 	
 	public PeopleBankAccount() {
 		super();
 	}
+	
 	public PeopleBankAccount(int bankAccountId, int accountNumber, String bank, String forenames, String surname,
 			String dateOfBirth, String homeAddress) {
 		super();
@@ -36,6 +40,26 @@ public class PeopleBankAccount {
 		this.dateOfBirth = dateOfBirth;
 		this.homeAddress = homeAddress;
 	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(accountNumber, bank, bankAccountId, dateOfBirth, forenames, homeAddress, surname);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PeopleBankAccount other = (PeopleBankAccount) obj;
+		return accountNumber == other.accountNumber && Objects.equals(bank, other.bank)
+				&& bankAccountId == other.bankAccountId && Objects.equals(dateOfBirth, other.dateOfBirth)
+				&& Objects.equals(forenames, other.forenames) && Objects.equals(homeAddress, other.homeAddress)
+				&& Objects.equals(surname, other.surname);
+	}
+	
 	public int getBankAccountId() {
 		return bankAccountId;
 	}
@@ -78,24 +102,28 @@ public class PeopleBankAccount {
 	public void setHomeAddress(String homeAddress) {
 		this.homeAddress = homeAddress;
 	}
-	@Override
-	public int hashCode() {
-		return Objects.hash(accountNumber, bank, bankAccountId, dateOfBirth, forenames, homeAddress, surname);
+
+	public Citizen getCitizen() {
+		return citizen;
 	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		PeopleBankAccount other = (PeopleBankAccount) obj;
-		return accountNumber == other.accountNumber && Objects.equals(bank, other.bank)
-				&& bankAccountId == other.bankAccountId && Objects.equals(dateOfBirth, other.dateOfBirth)
-				&& Objects.equals(forenames, other.forenames) && Objects.equals(homeAddress, other.homeAddress)
-				&& Objects.equals(surname, other.surname);
+
+	public void setCitizen(Citizen citizen) {
+		this.citizen = citizen;
 	}
-	
+
+	public List<BankCard> getBankcards() {
+		return bankcards;
+	}
+
+	public void setBankcards(List<BankCard> bankcards) {
+		this.bankcards = bankcards;
+	}
+
+	@Override
+	public String toString() {
+		return "PeopleBankAccount [bankAccountId=" + bankAccountId + ", accountNumber=" + accountNumber + ", bank="
+				+ bank + ", forenames=" + forenames + ", surname=" + surname + ", dateOfBirth=" + dateOfBirth
+				+ ", homeAddress=" + homeAddress + "]";
+	}
 	
 }

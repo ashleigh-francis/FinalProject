@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class MobileCallRecords {
@@ -16,6 +17,10 @@ public class MobileCallRecords {
 	@Id
 	private int tableId;
 	
+	@ManyToOne
+	private PeopleMobile peopleMobile;
+	@ManyToOne
+	private CellTower cellTower;
 	
 	public MobileCallRecords() {
 		super();
@@ -113,6 +118,34 @@ public class MobileCallRecords {
 
 	public void setTableId(int tableId) {
 		this.tableId = tableId;
+	}
+
+
+	public PeopleMobile getPeopleMobile() {
+		return peopleMobile;
+	}
+
+
+	public void setPeopleMobile(PeopleMobile peopleMobile) {
+		this.peopleMobile = peopleMobile;
+	}
+
+
+	public CellTower getCellTower() {
+		return cellTower;
+	}
+
+
+	public void setCellTower(CellTower cellTower) {
+		this.cellTower = cellTower;
+	}
+
+
+	@Override
+	public String toString() {
+		return "MobileCallRecords [timestamp=" + timestamp + ", callerMSISDN=" + callerMSISDN + ", callCellTowerId="
+				+ callCellTowerId + ", receiverMSISDN=" + receiverMSISDN + ", receiverTowerId=" + receiverTowerId
+				+ ", tableId=" + tableId + "]";
 	}
 	
 	

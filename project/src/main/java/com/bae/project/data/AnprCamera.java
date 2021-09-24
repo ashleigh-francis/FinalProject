@@ -1,9 +1,11 @@
 package com.bae.project.data;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class AnprCamera {
@@ -14,6 +16,8 @@ public class AnprCamera {
 	private double latitude;
 	private double longitude;
 	
+	@OneToMany
+	private List<VehicleObservations> vehicleObvs;
 	
 	public AnprCamera() {
 		super();
@@ -76,6 +80,20 @@ public class AnprCamera {
 
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
+	}
+
+	public List<VehicleObservations> getVehicleObvs() {
+		return vehicleObvs;
+	}
+
+	public void setVehicleObvs(List<VehicleObservations> vehicleObvs) {
+		this.vehicleObvs = vehicleObvs;
+	}
+
+	@Override
+	public String toString() {
+		return "AnprCamera [anprId=" + anprId + ", streetName=" + streetName + ", latitude=" + latitude + ", longitude="
+				+ longitude + "]";
 	}
 
 }
