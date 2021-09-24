@@ -25,7 +25,7 @@ const Overview = ({forenames, surname, dateOfBirth}) => {
     }
     return (
         <>
-            <form action="/Search" >
+            <form action="/Output" >
 
 
                 <label> Forenames:</label>

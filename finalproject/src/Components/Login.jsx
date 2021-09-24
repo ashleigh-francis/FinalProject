@@ -11,7 +11,7 @@ const Login = () => {
 
     return (
         <>
-            <form action = "/Info">
+            <form action = "/Search">
             <label> Username:</label>
                 <input name="username"
                 type="text"

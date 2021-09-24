@@ -8,18 +8,18 @@ import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 function App() {
   return (
     <div className="App">
-    <Router>
-    <Route exact path="/">
-    <Login/>
-  </Route>
-  <Route path="/Search">
-    <Search/>
-    </Route>
-    <Route path="/Output">
-    <Output/>
-    </Route>
-  </Router>
-  </div>
+      <Router>
+        <Route exact path="/">
+          <Login />
+        </Route>
+        <Route path="/Search">
+          <Search />
+        </Route>
+        <Route path="/Output">
+          <Output />
+        </Route>
+      </Router>
+    </div>
   );
 }
 
