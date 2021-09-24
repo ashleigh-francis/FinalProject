@@ -1,6 +1,6 @@
 package com.bae.project.dto;
 
-public class FinancialRecordDTO {
+public class FinancialRecordsDTO {
 
 	private int accountNumber;
 	private String bank;
@@ -20,12 +20,14 @@ public class FinancialRecordDTO {
 	private double latitude;
 	private double longitude;
 	
-	public FinancialRecordDTO() {
+	
+	
+	public FinancialRecordsDTO() {
 		super();
 	}
 
 
-	public FinancialRecordDTO(int accountNumber, String bank, String forenames, String surname, String dateOfBirth,
+	public FinancialRecordsDTO(int accountNumber, String bank, String forenames, String surname, String dateOfBirth,
 			String homeAddress, long cardNumber, String sortCode, String timestamp, long bankCardNumber,
 			int payeeAccount, float amount, String vendor, String streetName, String postcode, double latitude,
 			double longitude) {
