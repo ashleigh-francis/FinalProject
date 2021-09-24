@@ -1,9 +1,11 @@
 package com.bae.project.data;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class AtmPoint {
@@ -16,6 +18,8 @@ public class AtmPoint {
 	private double latitude;
 	private double longitude;
 	
+	@OneToMany
+	private List<AtmTransaction> atmTrans;
 	
 	public AtmPoint(int atmId, String operator, String streetName, String postcode, double latitude, double longitude) {
 		super();
@@ -29,6 +33,25 @@ public class AtmPoint {
 	
 	public AtmPoint() {
 		super();
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(atmId, latitude, longitude, operator, postcode, streetName);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AtmPoint other = (AtmPoint) obj;
+		return atmId == other.atmId && Double.doubleToLongBits(latitude) == Double.doubleToLongBits(other.latitude)
+				&& Double.doubleToLongBits(longitude) == Double.doubleToLongBits(other.longitude)
+				&& Objects.equals(operator, other.operator) && Objects.equals(postcode, other.postcode)
+				&& Objects.equals(streetName, other.streetName);
 	}
 
 	public int getAtmId() {
@@ -67,24 +90,19 @@ public class AtmPoint {
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
-	@Override
-	public int hashCode() {
-		return Objects.hash(atmId, latitude, longitude, operator, postcode, streetName);
+
+	public List<AtmTransaction> getAtmTrans() {
+		return atmTrans;
 	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		AtmPoint other = (AtmPoint) obj;
-		return atmId == other.atmId && Double.doubleToLongBits(latitude) == Double.doubleToLongBits(other.latitude)
-				&& Double.doubleToLongBits(longitude) == Double.doubleToLongBits(other.longitude)
-				&& Objects.equals(operator, other.operator) && Objects.equals(postcode, other.postcode)
-				&& Objects.equals(streetName, other.streetName);
+
+	public void setAtmTrans(List<AtmTransaction> atmTrans) {
+		this.atmTrans = atmTrans;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "AtmPoint [atmId=" + atmId + ", operator=" + operator + ", streetName=" + streetName + ", postcode="
+				+ postcode + ", latitude=" + latitude + ", longitude=" + longitude + "]";
+	}
 	
 }

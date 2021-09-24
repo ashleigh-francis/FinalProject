@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Passport {
@@ -20,6 +21,8 @@ public class Passport {
 	private String dateOfIssue;
 	private String dateOfExpiry;
 	
+	@ManyToOne
+	private Citizen citizen;
 	
 	public Passport() {
 		super();
@@ -142,7 +145,21 @@ public class Passport {
 	public void setDateOfExpiry(String dateOfExpiry) {
 		this.dateOfExpiry = dateOfExpiry;
 	}
-	
-	
+
+	public Citizen getCitizen() {
+		return citizen;
+	}
+
+	public void setCitizen(Citizen citizen) {
+		this.citizen = citizen;
+	}
+
+	@Override
+	public String toString() {
+		return "Passport [passportNumber=" + passportNumber + ", surname=" + surname + ", givenName=" + givenName
+				+ ", nationality=" + nationality + ", dob=" + dob + ", sex=" + sex + ", placeOfBirth=" + placeOfBirth
+				+ ", isssuingCountry=" + isssuingCountry + ", dateOfIssue=" + dateOfIssue + ", dateOfExpiry="
+				+ dateOfExpiry + "]";
+	}
 
 }

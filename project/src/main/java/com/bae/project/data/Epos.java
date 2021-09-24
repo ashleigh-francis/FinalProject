@@ -1,9 +1,11 @@
 package com.bae.project.data;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Epos {
@@ -17,6 +19,8 @@ public class Epos {
 	@Id
 	private int tableId;
 	
+	@OneToMany
+	private List<EposTransactions> eposTrans;
 	
 	public Epos() {
 		super();
@@ -126,7 +130,19 @@ public class Epos {
 	public void setTableId(int tableId) {
 		this.tableId = tableId;
 	}
-	
-	
 
+	public List<EposTransactions> getEposTrans() {
+		return eposTrans;
+	}
+
+	public void setEposTrans(List<EposTransactions> eposTrans) {
+		this.eposTrans = eposTrans;
+	}
+
+	@Override
+	public String toString() {
+		return "Epos [id=" + id + ", vendor=" + vendor + ", streetName=" + streetName + ", postcode=" + postcode
+				+ ", latitude=" + latitude + ", longitude=" + longitude + ", tableId=" + tableId + "]";
+	}
+	
 }

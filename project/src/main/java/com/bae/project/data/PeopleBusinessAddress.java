@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class PeopleBusinessAddress {
@@ -15,6 +16,8 @@ public class PeopleBusinessAddress {
 	private String businessName;
 	private String businessAddress;
 	
+	@ManyToOne
+	private Citizen citizen;
 	
 	public PeopleBusinessAddress() {
 		super();
@@ -100,6 +103,20 @@ public class PeopleBusinessAddress {
 
 	public void setBusinessAddress(String businessAddress) {
 		this.businessAddress = businessAddress;
+	}
+
+	public Citizen getCitizen() {
+		return citizen;
+	}
+
+	public void setCitizen(Citizen citizen) {
+		this.citizen = citizen;
+	}
+
+	@Override
+	public String toString() {
+		return "PeopleBusinessAddress [personName=" + personName + ", homeAddress=" + homeAddress + ", dateOfBirth="
+				+ dateOfBirth + ", businessName=" + businessName + ", businessAddress=" + businessAddress + "]";
 	}
 
 }

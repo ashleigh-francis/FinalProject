@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class VehicleObservations {
@@ -12,6 +13,11 @@ public class VehicleObservations {
 	private int anprPointId;
 	private String timestamp;
 	private String vehicleRegistrationNumber;
+	
+	@ManyToOne
+	private VehicleRegistration vehicleReg;
+	@ManyToOne
+	private AnprCamera anprCamera;
 	
 	public VehicleObservations() {
 		super();
@@ -22,6 +28,23 @@ public class VehicleObservations {
 		this.anprPointId = anprPointId;
 		this.timestamp = timestamp;
 		this.vehicleRegistrationNumber = vehicleRegistrationNumber;
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(anprPointId, timestamp, vehicleRegistrationNumber);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		VehicleObservations other = (VehicleObservations) obj;
+		return anprPointId == other.anprPointId && Objects.equals(timestamp, other.timestamp)
+				&& Objects.equals(vehicleRegistrationNumber, other.vehicleRegistrationNumber);
 	}
 	
 	public int getAnprPointId() {
@@ -42,21 +65,27 @@ public class VehicleObservations {
 	public void setVehicleRegistrationNumber(String vehicleRegistrationNumber) {
 		this.vehicleRegistrationNumber = vehicleRegistrationNumber;
 	}
-	@Override
-	public int hashCode() {
-		return Objects.hash(anprPointId, timestamp, vehicleRegistrationNumber);
+
+	public VehicleRegistration getVehicleReg() {
+		return vehicleReg;
 	}
+
+	public void setVehicleReg(VehicleRegistration vehicleReg) {
+		this.vehicleReg = vehicleReg;
+	}
+
+	public AnprCamera getAnprCamera() {
+		return anprCamera;
+	}
+
+	public void setAnprCamera(AnprCamera anprCamera) {
+		this.anprCamera = anprCamera;
+	}
+
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		VehicleObservations other = (VehicleObservations) obj;
-		return anprPointId == other.anprPointId && Objects.equals(timestamp, other.timestamp)
-				&& Objects.equals(vehicleRegistrationNumber, other.vehicleRegistrationNumber);
+	public String toString() {
+		return "VehicleObservations [anprPointId=" + anprPointId + ", timestamp=" + timestamp
+				+ ", vehicleRegistrationNumber=" + vehicleRegistrationNumber + "]";
 	}
 	
 	

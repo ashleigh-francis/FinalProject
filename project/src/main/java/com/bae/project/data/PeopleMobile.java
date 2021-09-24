@@ -1,9 +1,12 @@
 package com.bae.project.data;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class PeopleMobile {
@@ -19,6 +22,10 @@ public class PeopleMobile {
 	private String phoneNumber;
 	private String network;
 	
+	@ManyToOne
+	private Citizen citizen;
+	@OneToMany
+	private List<MobileCallRecords> mobileCallRecords;
 	
 	public PeopleMobile() {
 		super();
@@ -150,10 +157,33 @@ public class PeopleMobile {
 	public void setNetwork(String network) {
 		this.network = network;
 	}
-	
-	
-	
-	
-	
+
+
+	public Citizen getCitizen() {
+		return citizen;
+	}
+
+
+	public void setCitizen(Citizen citizen) {
+		this.citizen = citizen;
+	}
+
+
+	public List<MobileCallRecords> getMobileCallRecords() {
+		return mobileCallRecords;
+	}
+
+
+	public void setMobileCallRecords(List<MobileCallRecords> mobileCallRecords) {
+		this.mobileCallRecords = mobileCallRecords;
+	}
+
+
+	@Override
+	public String toString() {
+		return "PeopleMobile [id=" + id + ", forename=" + forename + ", surname=" + surname + ", dateOfBirth="
+				+ dateOfBirth + ", address=" + address + ", town=" + town + ", postcode=" + postcode + ", phoneNumber="
+				+ phoneNumber + ", network=" + network + "]";
+	}
 
 }

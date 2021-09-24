@@ -1,8 +1,10 @@
 package com.bae.project.data;
 
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Citizen {
@@ -15,6 +17,17 @@ public class Citizen {
 	private String dateOfBirth;
 	private String placeOfBirth;
 	private String sex;
+	
+	@OneToMany
+	private List<PeopleBusinessAddress> businessAdds;
+	@OneToMany
+	private List<PeopleBankAccount> bankAccounts;
+	@OneToMany
+	private List<PeopleMobile> peopleMobiles;
+	@OneToMany
+	private List<VehicleRegistration> vehicleRegistrations;
+	@OneToMany
+	private List<Passport> passports;
 	
 	public Citizen() {
 		super();
@@ -92,6 +105,52 @@ public class Citizen {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-	
+
+	public List<PeopleBusinessAddress> getBusinessAdds() {
+		return businessAdds;
+	}
+
+	public void setBusinessAdds(List<PeopleBusinessAddress> businessAdds) {
+		this.businessAdds = businessAdds;
+	}
+
+	public List<PeopleBankAccount> getBankAccounts() {
+		return bankAccounts;
+	}
+
+	public void setBankAccounts(List<PeopleBankAccount> bankAccounts) {
+		this.bankAccounts = bankAccounts;
+	}
+
+	public List<PeopleMobile> getPeopleMobiles() {
+		return peopleMobiles;
+	}
+
+	public void setPeopleMobiles(List<PeopleMobile> peopleMobiles) {
+		this.peopleMobiles = peopleMobiles;
+	}
+
+	public List<VehicleRegistration> getVehicleRegistrations() {
+		return vehicleRegistrations;
+	}
+
+	public void setVehicleRegistrations(List<VehicleRegistration> vehicleRegistrations) {
+		this.vehicleRegistrations = vehicleRegistrations;
+	}
+
+	public List<Passport> getPassports() {
+		return passports;
+	}
+
+	public void setPassports(List<Passport> passports) {
+		this.passports = passports;
+	}
+
+	@Override
+	public String toString() {
+		return "Citizen [citizenID=" + citizenID + ", forenames=" + forenames + ", surname=" + surname
+				+ ", homeAddress=" + homeAddress + ", dateOfBirth=" + dateOfBirth + ", placeOfBirth=" + placeOfBirth
+				+ ", sex=" + sex + "]";
+	}
 
 }
