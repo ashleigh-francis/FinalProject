@@ -4,9 +4,10 @@ import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Bankcard {
+public class BankCard {
 
 	@Id
 	private int bankcardId;
@@ -15,9 +16,11 @@ public class Bankcard {
 	private int bankAccountId;
 	private int accountNumber;
 	private String bank;
+	@ManyToOne
+	private PeopleBankAccount bankAccount;
 	
 	
-	public Bankcard(int bankcardId, long cardNumber, String sortCode, int bankAccountId, int accountNumber,
+	public BankCard(int bankcardId, long cardNumber, String sortCode, int bankAccountId, int accountNumber,
 			String bank) {
 		super();
 		this.bankcardId = bankcardId;
@@ -28,7 +31,7 @@ public class Bankcard {
 		this.bank = bank;
 	}
 	
-	public Bankcard() {
+	public BankCard() {
 		super();
 	}
 
@@ -80,7 +83,7 @@ public class Bankcard {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Bankcard other = (Bankcard) obj;
+		BankCard other = (BankCard) obj;
 		return accountNumber == other.accountNumber && Objects.equals(bank, other.bank)
 				&& bankAccountId == other.bankAccountId && bankcardId == other.bankcardId
 				&& cardNumber == other.cardNumber && Objects.equals(sortCode, other.sortCode);
