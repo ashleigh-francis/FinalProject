@@ -1,9 +1,11 @@
 package com.bae.project.data;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class PeopleBankAccount {
@@ -17,6 +19,8 @@ public class PeopleBankAccount {
 	private String dateOfBirth;
 	private String homeAddress;
 	
+	@OneToMany
+	private List<BankCard> bankcards;
 	
 	public PeopleBankAccount() {
 		super();
