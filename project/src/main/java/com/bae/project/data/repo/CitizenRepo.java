@@ -14,6 +14,6 @@ public interface CitizenRepo extends JpaRepository<Citizen, Integer>{
 
 	List<CitizenInfoDTO> findByCitizenNameIgnoreCase(String name);
 	List<FinancialRecordsDTO> findByFinancialNameIgnoreCase(String name);
-	List<VehicleInfoDTO> findByVehicalNameIgnoreCase(String name);
+	List<VehicleInfoDTO> findByVehicleNameIgnoreCase(String name);
 	List<MobileRecordsDTO> findByMobileNameIgnoreCase(String name);
 }

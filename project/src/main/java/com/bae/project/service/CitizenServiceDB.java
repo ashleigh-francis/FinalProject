@@ -5,15 +5,21 @@ import java.util.List;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
+import com.bae.project.data.AnprCamera;
 import com.bae.project.data.AtmPoint;
 import com.bae.project.data.AtmTransaction;
 import com.bae.project.data.BankCard;
+import com.bae.project.data.CellTower;
 import com.bae.project.data.Citizen;
 import com.bae.project.data.Epos;
 import com.bae.project.data.EposTransactions;
+import com.bae.project.data.MobileCallRecords;
 import com.bae.project.data.Passport;
 import com.bae.project.data.PeopleBankAccount;
 import com.bae.project.data.PeopleBusinessAddress;
+import com.bae.project.data.PeopleMobile;
+import com.bae.project.data.VehicleObservations;
+import com.bae.project.data.VehicleRegistration;
 import com.bae.project.data.repo.CitizenRepo;
 import com.bae.project.dto.CitizenInfoDTO;
 import com.bae.project.dto.FinancialRecordsDTO;
@@ -55,10 +61,6 @@ public class CitizenServiceDB implements CitizenService{
 		FinancialRecordsDTO dtoF = new FinancialRecordsDTO();
 		dtoF.setAccountNumber(Bank.getAccountNumber());
 		dtoF.setBank(Bank.getBank());
-		dtoF.setForenames(Bank.getForenames());
-		dtoF.setSurname(Bank.getSurname());
-		dtoF.setDateOfBirth(Bank.getDateOfBirth());
-		dtoF.setHomeAddress(Bank.getHomeAddress());
 		dtoF.setBankCardNumber(Bankcard.getCardNumber());
 		dtoF.setSortCode(Bankcard.getSortCode());
 		dtoF.setTimestamp(EposTrans.getTimestamp());
@@ -70,9 +72,48 @@ public class CitizenServiceDB implements CitizenService{
 		dtoF.setPostcode(Epos.getPostcode());
 		dtoF.setLatitude(Epos.getLatitude());
 		dtoF.setLongitude(Epos.getLongitude());
-		
+		dtoF.setAtmTimestamp(AtmTrans.getAtmTimestamp());
+		dtoF.setAtmBankCardNumber(AtmTrans.getAtmBankCardNumber());
+		dtoF.setType(AtmTrans.getType());
+		dtoF.setAtmAmount(AtmTrans.getAtmAmount());
+		dtoF.setOperator(Atm.getOperator());
+		dtoF.setAtmStreetName(Atm.getAtmStreetName());
+		dtoF.setAtmPostcode(Atm.getAtmPostcode());
+		dtoF.setAtmLatitude(Atm.getAtmLatitude());
+		dtoF.setAtmLongitude(Atm.getAtmLongitude());
 		
 		return dtoF;
+	}
+	
+	public VehicleInfoDTO mapToDTO(VehicleRegistration VehicleReg, 
+			VehicleObservations VehicleObvs, AnprCamera Anpr) {
+		VehicleInfoDTO dtoV = new VehicleInfoDTO();
+		dtoV.setDriverLicenceID(VehicleReg.getDriverLicenceID());
+		dtoV.setVehicleRegistrationNo(VehicleReg.getVehicleRegistrationNo());
+		dtoV.setMake(VehicleReg.getMake());
+		dtoV.setModel(VehicleReg.getModel());
+		dtoV.setColour(VehicleReg.getColour());
+		dtoV.setAnprPointId(VehicleObvs.getAnprPointId());
+		dtoV.setTimestamp(VehicleObvs.getTimestamp());
+		dtoV.setStreetName(Anpr.getStreetName());
+		dtoV.setLatitude(Anpr.getLatitude());
+		dtoV.setLongitude(Anpr.getLongitude());
+		
+		return dtoV;
+	}
+	
+	public MobileRecordsDTO mapToDTO(PeopleMobile PeopleMobile, 
+			MobileCallRecords MobileCall, CellTower CellTower) {
+		MobileRecordsDTO dtoM = new MobileRecordsDTO();
+		dtoM.setPhoneNumber(PeopleMobile.getPhoneNumber());
+		dtoM.setNetwork(PeopleMobile.getNetwork());
+		dtoM.setTimestamp(MobileCall.getTimestamp());
+		dtoM.setCallerMSISDN(MobileCall.getCallerMSISDN());
+		dtoM.setReceiverMSISDN(MobileCall.getReceiverMSISDN());
+		dtoM.setLatitude(CellTower.getLatitude());
+		dtoM.setLongitude(CellTower.getLongitude());
+		
+		return dtoM;
 	}
 	
 	
@@ -85,19 +126,19 @@ public class CitizenServiceDB implements CitizenService{
 	@Override
 	public List<VehicleInfoDTO> getVehicleInfo(String name) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.repo.findByVehicleNameIgnoreCase(name);
 	}
 
 	@Override
 	public List<MobileRecordsDTO> getMobileRecords(String name) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.repo.findByMobileNameIgnoreCase(name);
 	}
 
 	@Override
 	public List<FinancialRecordsDTO> getFinancialRecords(String name) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.repo.findByFinancialNameIgnoreCase(name);
 	}
 
 }
