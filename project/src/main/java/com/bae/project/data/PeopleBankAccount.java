@@ -22,7 +22,7 @@ public class PeopleBankAccount {
 	
 	@ManyToOne
 	private Citizen citizen;
-	@OneToMany
+	@OneToMany(mappedBy = "")
 	private List<BankCard> bankcards;
 	
 	public PeopleBankAccount() {

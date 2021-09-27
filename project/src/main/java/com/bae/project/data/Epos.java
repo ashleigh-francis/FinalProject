@@ -19,7 +19,8 @@ public class Epos {
 	@Id
 	private int tableId;
 	
-	@OneToMany
+	
+	@OneToMany(mappedBy = "epos")
 	private List<EposTransactions> eposTrans;
 	
 	public Epos() {

@@ -23,7 +23,7 @@ public class AtmPoint {
 	@Column(name="longitude")
 	private double atmLongitude;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "atmPoint")
 	private List<AtmTransaction> atmTrans;
 	
 	public AtmPoint() {

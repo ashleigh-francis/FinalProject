@@ -21,6 +21,9 @@ import com.bae.project.data.PeopleMobile;
 import com.bae.project.data.VehicleObservations;
 import com.bae.project.data.VehicleRegistration;
 import com.bae.project.data.repo.CitizenRepo;
+import com.bae.project.data.repo.FinancialRepo;
+import com.bae.project.data.repo.MobileRepo;
+import com.bae.project.data.repo.VehicleRepo;
 import com.bae.project.dto.CitizenInfoDTO;
 import com.bae.project.dto.FinancialRecordsDTO;
 import com.bae.project.dto.MobileRecordsDTO;
@@ -31,10 +34,17 @@ import com.bae.project.dto.VehicleInfoDTO;
 public class CitizenServiceDB implements CitizenService{
 	
 	private CitizenRepo repo;
+	private VehicleRepo repoV;
+	private FinancialRepo repoF;
+	private MobileRepo repoM;
 	
-	public CitizenServiceDB(CitizenRepo repo) {
+
+	public CitizenServiceDB(CitizenRepo repo, VehicleRepo repoV, FinancialRepo repoF, MobileRepo repoM) {
 		super();
-		this.repo=repo;
+		this.repo = repo;
+		this.repoV = repoV;
+		this.repoF = repoF;
+		this.repoM = repoM;
 	}
 
 	public CitizenInfoDTO mapToDTO(Citizen Citizen, PeopleBusinessAddress Business, Passport Passport) {
@@ -120,25 +130,25 @@ public class CitizenServiceDB implements CitizenService{
 	@Override
 	public List<CitizenInfoDTO> getCitizenInfo(String name) {
 		
-		return this.repo.findByCitizenNameIgnoreCase(name);
+		return this.repo.findByForenamesIgnoreCase(name);
 	}
 
 	@Override
 	public List<VehicleInfoDTO> getVehicleInfo(String name) {
 		// TODO Auto-generated method stub
-		return this.repo.findByVehicleNameIgnoreCase(name);
+		return this.repoV.findByForenamesIgnoreCase(name);
 	}
 
 	@Override
 	public List<MobileRecordsDTO> getMobileRecords(String name) {
 		// TODO Auto-generated method stub
-		return this.repo.findByMobileNameIgnoreCase(name);
+		return this.repoM.findByForenameIgnoreCase(name);
 	}
 
 	@Override
 	public List<FinancialRecordsDTO> getFinancialRecords(String name) {
 		// TODO Auto-generated method stub
-		return this.repo.findByFinancialNameIgnoreCase(name);
+		return this.repoF.findByForenamesIgnoreCase(name);
 	}
 
 }
