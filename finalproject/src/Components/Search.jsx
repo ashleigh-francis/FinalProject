@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Search = () => {
 
-    
+
     const [forenames, setForenames] = useState('');
     const [surname, setSurname] = useState('');
     const [data, setData] = useState("");
@@ -38,30 +40,35 @@ const Search = () => {
     return (
         <>
             <form action="/CitizenCon">
-            {/* onSubmit={MakeRequest} */}
+                {/* onSubmit={MakeRequest} */}
                 <h1>Please enter the search fields</h1>
                 <br />
                 <br />
 
 
                 <label> Forenames: </label>
+                <br />
                 <input name="forenames"
                     type="text"
+                    placeholder="Enter forenames"
                     value={forenames}
                     onInput={e => setForenames(e.target.value)}
                 />
-
+                <br />
+                <br />
                 <label> Surname: </label>
+                <br/>
                 <input type="surname"
+                    placeholder="Enter surname"
                     name="surname"
                     value={surname}
                     onInput={e => setSurname(e.target.value)}
                 />
                 <br />
                 <br />
-                <button>Search</button>
+                <Button type="submit">Search</Button>
             </form>
         </>
     );
-}  
+}
 export default Search;

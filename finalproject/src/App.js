@@ -5,6 +5,8 @@ import Output from './Components/Output';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import CitizenContainer from './Components/Citizen_Container';
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (

@@ -2,6 +2,8 @@ import Text_Hider from "./Text_Hider";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Financial from "./Financial";
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Output = () => {
 
@@ -50,8 +52,7 @@ const Output = () => {
 
 
             <h2>Financial Records</h2>
-            <button onClick={financialsRec}> Read More</button>
-            <Text_Hider text={financialText} maxLength={maxLength} />
+           <Text_Hider text={financialText} maxLength={maxLength} />
 
             <h2>Phone Records</h2>
             <Text_Hider text={phoneText} maxLength={maxLength} />

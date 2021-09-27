@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Text_Hider = ({text,maxLength}) => {
     const [hidden, setHidden] = useState(true);
@@ -12,9 +14,9 @@ const Text_Hider = ({text,maxLength}) => {
             {hidden ? `${text.substr(0,maxLength).trim()}...` : text}
 
             {hidden ? (
-                <a onClick={() => setHidden(false)}> [Read More]</a>
+                <Button onClick={() => setHidden(false)}> Read More</Button>
             ) : (
-                <a onClick={() => setHidden(true)}> [Read Less]</a>
+                <Button onClick={() => setHidden(true)}> Read Less</Button>
             )}
         </span>
     );
