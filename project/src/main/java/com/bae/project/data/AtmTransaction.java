@@ -2,23 +2,29 @@ package com.bae.project.data;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
 public class AtmTransaction {
 	
-		private String timestamp;
+		@Column(name = "timestamp")
+		private String atmTimestamp;
 		private int atmId;
-		private long bankCardNumber;
+		@Column(name = "bankCardNumber")
+		private long atmBankCardNumber;
 		private String type;
-		private float amount;
+		@Column(name = "amount")
+		private float atmAmount;
 		@Id
 		private int id;
-		
+			
 		@ManyToOne
 		private BankCard bankcard;
+		
 		@ManyToOne
 		private AtmPoint atmPoint;
 		
@@ -26,44 +32,23 @@ public class AtmTransaction {
 			super();
 		}
 
-
-		public AtmTransaction(String timestamp, int atmId, long bankCardNumber, String type, float amount, int id) {
+		public AtmTransaction(String atmTimestamp, int atmId, long atmBankCardNumber, String type, float atmAmount,
+				int id, BankCard bankcard, AtmPoint atmPoint) {
 			super();
-			this.timestamp = timestamp;
+			this.atmTimestamp = atmTimestamp;
 			this.atmId = atmId;
-			this.bankCardNumber = bankCardNumber;
+			this.atmBankCardNumber = atmBankCardNumber;
 			this.type = type;
-			this.amount = amount;
+			this.atmAmount = atmAmount;
 			this.id = id;
 		}
 
-
-		@Override
-		public int hashCode() {
-			return Objects.hash(amount, atmId, bankCardNumber, id, timestamp, type);
+		public String getAtmTimestamp() {
+			return atmTimestamp;
 		}
 
-
-		@Override
-		public boolean equals(Object obj) {
-			if (this == obj)
-				return true;
-			if (obj == null)
-				return false;
-			if (getClass() != obj.getClass())
-				return false;
-			AtmTransaction other = (AtmTransaction) obj;
-			return Float.floatToIntBits(amount) == Float.floatToIntBits(other.amount) && atmId == other.atmId
-					&& bankCardNumber == other.bankCardNumber && id == other.id
-					&& Objects.equals(timestamp, other.timestamp) && Objects.equals(type, other.type);
-		}
-
-		public String getTimestamp() {
-			return timestamp;
-		}
-
-		public void setTimestamp(String timestamp) {
-			this.timestamp = timestamp;
+		public void setAtmTimestamp(String atmTimestamp) {
+			this.atmTimestamp = atmTimestamp;
 		}
 
 		public int getAtmId() {
@@ -74,12 +59,12 @@ public class AtmTransaction {
 			this.atmId = atmId;
 		}
 
-		public long getBankCardNumber() {
-			return bankCardNumber;
+		public long getAtmBankCardNumber() {
+			return atmBankCardNumber;
 		}
 
-		public void setBankCardNumber(long bankCardNumber) {
-			this.bankCardNumber = bankCardNumber;
+		public void setAtmBankCardNumber(long atmBankCardNumber) {
+			this.atmBankCardNumber = atmBankCardNumber;
 		}
 
 		public String getType() {
@@ -90,12 +75,12 @@ public class AtmTransaction {
 			this.type = type;
 		}
 
-		public float getAmount() {
-			return amount;
+		public float getAtmAmount() {
+			return atmAmount;
 		}
 
-		public void setAmount(float amount) {
-			this.amount = amount;
+		public void setAtmAmount(float atmAmount) {
+			this.atmAmount = atmAmount;
 		}
 
 		public int getId() {
@@ -123,9 +108,30 @@ public class AtmTransaction {
 		}
 
 		@Override
-		public String toString() {
-			return "AtmTransaction [timestamp=" + timestamp + ", atmId=" + atmId + ", bankCardNumber=" + bankCardNumber
-					+ ", type=" + type + ", amount=" + amount + ", id=" + id + "]";
+		public int hashCode() {
+			return Objects.hash(atmAmount, atmBankCardNumber, atmId, atmTimestamp, id, type);
 		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			AtmTransaction other = (AtmTransaction) obj;
+			return Float.floatToIntBits(atmAmount) == Float.floatToIntBits(other.atmAmount)
+					&& atmBankCardNumber == other.atmBankCardNumber && atmId == other.atmId
+					&& Objects.equals(atmTimestamp, other.atmTimestamp) && id == other.id && Objects.equals(type, other.type);
+		}
+
+		@Override
+		public String toString() {
+			return "AtmTransaction [atmTimestamp=" + atmTimestamp + ", atmId=" + atmId + ", atmBankCardNumber="
+					+ atmBankCardNumber + ", type=" + type + ", atmAmount=" + atmAmount + ", id=" + id + "]";
+		}
+
 		
+	
 }

@@ -21,9 +21,11 @@ public class BankCard {
 	
 	@ManyToOne
 	private PeopleBankAccount bankAccount;
-	@OneToMany
+	
+	@OneToMany(mappedBy = "bankcard")
 	private List<EposTransactions> eposTrans;
-	@OneToMany
+	
+	@OneToMany(mappedBy = "bankcard")
 	private List<AtmTransaction> AtmTrans;
 	
 	public BankCard(int bankcardId, long cardNumber, String sortCode, int bankAccountId, int accountNumber,
