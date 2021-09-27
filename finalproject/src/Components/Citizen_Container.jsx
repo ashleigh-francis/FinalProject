@@ -13,6 +13,7 @@ const CitizenContainer = () => {
       .then(({ data }) => setCitizens(data))
       .catch((err) => setError(err.message));
   }, []);
+  console.log(Citizens);
 
   return (
     <>
@@ -24,7 +25,7 @@ const CitizenContainer = () => {
       )}
       { Citizens.map(({
         forenames, surname, dateOfBirth
-      }) => <Citizen key={`${forenames}${surname} : ${dateOfBirth}`}/>) }
+      }) => <Citizen key={`${forenames}${surname} : ${dateOfBirth}`} forenames={forenames} surname={surname} dateOfBirth={dateOfBirth}/>) }
     </>
   );
 };

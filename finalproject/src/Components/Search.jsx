@@ -1,18 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 const Search = () => {
 
+    
     const [forenames, setForenames] = useState('');
     const [surname, setSurname] = useState('');
     const [data, setData] = useState("");
+    const [error, setError] = useState('');
 
-    const makeRequest = (e) => {
-        axios.get('https://raw.githubusercontent.com/ashleigh-francis/Mock-Data/main/exampledata.json')
-            .then(response => {
-                console.log(response.json);
-                setData(response.data);
-            });
+    const MakeRequest = (e) => {
+        e.preventDefault();
+
+        console.log("hello");
+        axios
+            .get('https://raw.githubusercontent.com/ashleigh-francis/Mock-Data/main/exampledata.json')
+            .then(({ data }) => setData(data))
+            .catch((err) => setError(err.message));
+        //  useEffect(() => {
+        //         axios
+        //           .get('https://raw.githubusercontent.com/ashleigh-francis/Mock-Data/main/exampledata.json')
+        //           .then(({ data }) => setData(data))
+        //           .catch((err) => setError(err.message));
+        //       }, []); 
+        console.log(data);
+        console.log(error);
     }
     const Overview = ({ forenames, surname, dateOfBirth }) => {
         return (
@@ -25,8 +37,8 @@ const Search = () => {
     }
     return (
         <>
-            <form action= {makeRequest} >
-
+            <form action="/CitizenCon">
+            {/* onSubmit={MakeRequest} */}
                 <h1>Please enter the search fields</h1>
                 <br />
                 <br />
