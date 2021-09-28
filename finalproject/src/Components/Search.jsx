@@ -8,6 +8,7 @@ const Search = () => {
 
     const [forenames, setForenames] = useState('');
     const [surname, setSurname] = useState('');
+    const [dateOfBirth, setdateOfBirth] = useState('');
     const [data, setData] = useState("");
     const [error, setError] = useState('');
 
@@ -41,7 +42,7 @@ const Search = () => {
         <>
             <form action="/CitizenCon">
                 {/* onSubmit={MakeRequest} */}
-                <h1>Please enter the search fields</h1>
+                <h1>Please Enter the Search Fields</h1>
                 <br />
                 <br />
 
@@ -63,6 +64,16 @@ const Search = () => {
                     name="surname"
                     value={surname}
                     onInput={e => setSurname(e.target.value)}
+                />
+                <br />
+                <br />
+                <label> Date of Birth: </label>
+                <br />
+                <input name="dateOfBirth"
+                    type="text"
+                    placeholder="Enter date of birth"
+                    value={dateOfBirth}
+                    onInput={e => setdateOfBirth(e.target.value)}
                 />
                 <br />
                 <br />

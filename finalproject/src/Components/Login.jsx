@@ -15,7 +15,7 @@ const Login = () => {
         <>
             <form action = "/Search">
 
-                <h1>Welcome to the Citizen search database</h1>
+                <h1>Welcome to the Citizen Database</h1>
                 <br/>
                 <br/>
             <label>Username:</label> 

@@ -12,12 +12,16 @@ const Text_Hider = ({text,maxLength}) => {
     return ( 
         <span>
             {hidden ? `${text.substr(0,maxLength).trim()}...` : text}
+            <br/>
+            <br/>
 
             {hidden ? (
                 <Button onClick={() => setHidden(false)}> Read More</Button>
             ) : (
                 <Button onClick={() => setHidden(true)}> Read Less</Button>
             )}
+            <br/>
+            <br/>
         </span>
     );
 }
