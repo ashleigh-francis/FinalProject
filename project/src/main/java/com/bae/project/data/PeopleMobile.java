@@ -5,26 +5,29 @@ import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
 public class PeopleMobile {
 	
-	@Id
-	private int id;
-	private String forename;
+	
+	private Integer id;
+	private String forenames;
 	private String surname;
 	private String dateOfBirth;
 	private String address;
 	private String town;
 	private String postcode;
+	@Id
 	private String phoneNumber;
 	private String network;
 	
-	@ManyToOne
-	private Citizen citizen;
-	@OneToMany
+//	@ManyToOne
+//	@JoinColumn(name="forenames")
+//	private Citizen citizen;
+	@OneToMany(mappedBy="peopleMobile")
 	private List<MobileCallRecords> mobileCallRecords;
 	
 	public PeopleMobile() {
@@ -32,11 +35,12 @@ public class PeopleMobile {
 	}
 
 
-	public PeopleMobile(int id, String forename, String surname, String dateOfBirth, String address, String town,
+
+	public PeopleMobile(Integer id, String forenames, String surname, String dateOfBirth, String address, String town,
 			String postcode, String phoneNumber, String network) {
 		super();
 		this.id = id;
-		this.forename = forename;
+		this.forenames = forenames;
 		this.surname = surname;
 		this.dateOfBirth = dateOfBirth;
 		this.address = address;
@@ -46,11 +50,11 @@ public class PeopleMobile {
 		this.network = network;
 	}
 
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(address, dateOfBirth, forename, id, network, phoneNumber, postcode, surname, town);
+		return Objects.hash(address, dateOfBirth, forenames, id, network, phoneNumber, postcode, surname, town);
 	}
+
 
 
 	@Override
@@ -63,31 +67,22 @@ public class PeopleMobile {
 			return false;
 		PeopleMobile other = (PeopleMobile) obj;
 		return Objects.equals(address, other.address) && Objects.equals(dateOfBirth, other.dateOfBirth)
-				&& Objects.equals(forename, other.forename) && id == other.id && Objects.equals(network, other.network)
-				&& Objects.equals(phoneNumber, other.phoneNumber) && Objects.equals(postcode, other.postcode)
-				&& Objects.equals(surname, other.surname) && Objects.equals(town, other.town);
+				&& Objects.equals(forenames, other.forenames) && Objects.equals(id, other.id)
+				&& Objects.equals(network, other.network) && Objects.equals(phoneNumber, other.phoneNumber)
+				&& Objects.equals(postcode, other.postcode) && Objects.equals(surname, other.surname)
+				&& Objects.equals(town, other.town);
 	}
 
 
-	public int getId() {
+
+	public Integer getId() {
 		return id;
 	}
 
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
-
-
-	public String getForename() {
-		return forename;
-	}
-
-
-	public void setForename(String forename) {
-		this.forename = forename;
-	}
-
 
 	public String getSurname() {
 		return surname;
@@ -159,16 +154,6 @@ public class PeopleMobile {
 	}
 
 
-	public Citizen getCitizen() {
-		return citizen;
-	}
-
-
-	public void setCitizen(Citizen citizen) {
-		this.citizen = citizen;
-	}
-
-
 	public List<MobileCallRecords> getMobileCallRecords() {
 		return mobileCallRecords;
 	}
@@ -178,12 +163,23 @@ public class PeopleMobile {
 		this.mobileCallRecords = mobileCallRecords;
 	}
 
+	public String getForenames() {
+		return forenames;
+	}
+
+
+	public void setForenames(String forenames) {
+		this.forenames = forenames;
+	}
+
+
 
 	@Override
 	public String toString() {
-		return "PeopleMobile [id=" + id + ", forename=" + forename + ", surname=" + surname + ", dateOfBirth="
+		return "PeopleMobile [id=" + id + ", forenames=" + forenames + ", surname=" + surname + ", dateOfBirth="
 				+ dateOfBirth + ", address=" + address + ", town=" + town + ", postcode=" + postcode + ", phoneNumber="
 				+ phoneNumber + ", network=" + network + "]";
 	}
 
+	
 }

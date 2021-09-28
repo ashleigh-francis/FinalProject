@@ -9,8 +9,9 @@ import javax.persistence.OneToMany;
 @Entity
 public class Citizen {
 	
+	
+	private Long citizenID;
 	@Id
-	private int citizenID;
 	private String forenames;
 	private String surname;
 	private String homeAddress;
@@ -18,22 +19,20 @@ public class Citizen {
 	private String placeOfBirth;
 	private String sex;
 	
-	@OneToMany
-	private List<PeopleBusinessAddress> businessAdds;
-	@OneToMany
-	private List<PeopleBankAccount> bankAccounts;
-	@OneToMany
-	private List<PeopleMobile> peopleMobiles;
-	@OneToMany
-	private List<VehicleRegistration> vehicleRegistrations;
-	@OneToMany
-	private List<Passport> passports;
+
+//	@OneToMany(mappedBy ="citizen")
+//	private List<PeopleBankAccount> bankAccounts;
+//	@OneToMany(mappedBy ="citizen")
+//	private List<PeopleMobile> peopleMobiles;
+//	@OneToMany(mappedBy ="citizen")
+//	private List<VehicleRegistration> vehicleRegistrations;
+
 	
 	public Citizen() {
 		super();
 	}
 	
-	public Citizen(int citizenID, String forenames, String surname, String homeAddress, String dateOfBirth,
+	public Citizen(Long citizenID, String forenames, String surname, String homeAddress, String dateOfBirth,
 			String placeOfBirth, String sex) {
 		super();
 		this.citizenID = citizenID;
@@ -63,10 +62,10 @@ public class Citizen {
 				&& Objects.equals(placeOfBirth, other.placeOfBirth) && Objects.equals(sex, other.sex)
 				&& Objects.equals(surname, other.surname);
 	}
-	public int getCitizenID() {
+	public Long getCitizenID() {
 		return citizenID;
 	}
-	public void setCitizenID(int citizenID) {
+	public void setCitizenID(Long citizenID) {
 		this.citizenID = citizenID;
 	}
 	public String getForenames() {
@@ -106,45 +105,6 @@ public class Citizen {
 		this.sex = sex;
 	}
 
-	public List<PeopleBusinessAddress> getBusinessAdds() {
-		return businessAdds;
-	}
-
-	public void setBusinessAdds(List<PeopleBusinessAddress> businessAdds) {
-		this.businessAdds = businessAdds;
-	}
-
-	public List<PeopleBankAccount> getBankAccounts() {
-		return bankAccounts;
-	}
-
-	public void setBankAccounts(List<PeopleBankAccount> bankAccounts) {
-		this.bankAccounts = bankAccounts;
-	}
-
-	public List<PeopleMobile> getPeopleMobiles() {
-		return peopleMobiles;
-	}
-
-	public void setPeopleMobiles(List<PeopleMobile> peopleMobiles) {
-		this.peopleMobiles = peopleMobiles;
-	}
-
-	public List<VehicleRegistration> getVehicleRegistrations() {
-		return vehicleRegistrations;
-	}
-
-	public void setVehicleRegistrations(List<VehicleRegistration> vehicleRegistrations) {
-		this.vehicleRegistrations = vehicleRegistrations;
-	}
-
-	public List<Passport> getPassports() {
-		return passports;
-	}
-
-	public void setPassports(List<Passport> passports) {
-		this.passports = passports;
-	}
 
 	@Override
 	public String toString() {

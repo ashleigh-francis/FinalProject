@@ -4,12 +4,10 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.bae.project.data.VehicleObservations;
 import com.bae.project.data.VehicleRegistration;
-
-
 import com.bae.project.dto.VehicleInfoDTO;
 
-public interface VehicleRepo extends JpaRepository<VehicleRegistration, Integer> {
+public interface VehicleObservationRepo extends JpaRepository<VehicleObservations, Integer> {
 
-	List<VehicleInfoDTO> findByForenamesIgnoreCase(String name);
-}
+	}

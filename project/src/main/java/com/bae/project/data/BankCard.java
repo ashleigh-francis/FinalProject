@@ -5,22 +5,24 @@ import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
 public class BankCard {
 
+	
+	private Integer bankcardId;
 	@Id
-	private int bankcardId;
-	private long cardNumber;
+	private Long cardNumber;
 	private String sortCode;
-	private int bankAccountId;
-	private int accountNumber;
+	private Integer bankAccountId;
 	private String bank;
 	
 	@ManyToOne
-	private PeopleBankAccount bankAccount;
+	@JoinColumn(name="accountNumber")
+	private PeopleBankAccount peopleBankAccount;
 	
 	@OneToMany(mappedBy = "bankcard")
 	private List<EposTransactions> eposTrans;
@@ -28,25 +30,27 @@ public class BankCard {
 	@OneToMany(mappedBy = "bankcard")
 	private List<AtmTransaction> AtmTrans;
 	
-	public BankCard(int bankcardId, long cardNumber, String sortCode, int bankAccountId, int accountNumber,
-			String bank) {
+
+	public BankCard(Integer bankcardId, Long cardNumber, String sortCode, Integer bankAccountId, String bank) {
 		super();
 		this.bankcardId = bankcardId;
 		this.cardNumber = cardNumber;
 		this.sortCode = sortCode;
 		this.bankAccountId = bankAccountId;
-		this.accountNumber = accountNumber;
 		this.bank = bank;
 	}
-	
+
 	public BankCard() {
 		super();
 	}
 	
+	
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(accountNumber, bank, bankAccountId, bankcardId, cardNumber, sortCode);
+		return Objects.hash(bank, bankAccountId, bankcardId, cardNumber, sortCode);
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -56,21 +60,21 @@ public class BankCard {
 		if (getClass() != obj.getClass())
 			return false;
 		BankCard other = (BankCard) obj;
-		return accountNumber == other.accountNumber && Objects.equals(bank, other.bank)
-				&& bankAccountId == other.bankAccountId && bankcardId == other.bankcardId
-				&& cardNumber == other.cardNumber && Objects.equals(sortCode, other.sortCode);
+		return Objects.equals(bank, other.bank) && Objects.equals(bankAccountId, other.bankAccountId)
+				&& Objects.equals(bankcardId, other.bankcardId) && Objects.equals(cardNumber, other.cardNumber)
+				&& Objects.equals(sortCode, other.sortCode);
 	}
 
-	public int getBankcardId() {
+	public Integer getBankcardId() {
 		return bankcardId;
 	}
-	public void setBankcardId(int bankcardId) {
+	public void setBankcardId(Integer bankcardId) {
 		this.bankcardId = bankcardId;
 	}
-	public long getCardNumber() {
+	public Long getCardNumber() {
 		return cardNumber;
 	}
-	public void setCardNumber(long cardNumber) {
+	public void setCardNumber(Long cardNumber) {
 		this.cardNumber = cardNumber;
 	}
 	public String getSortCode() {
@@ -79,18 +83,7 @@ public class BankCard {
 	public void setSortCode(String sortCode) {
 		this.sortCode = sortCode;
 	}
-	public int getBankAccountId() {
-		return bankAccountId;
-	}
-	public void setBankAccountId(int bankAccountId) {
-		this.bankAccountId = bankAccountId;
-	}
-	public int getAccountNumber() {
-		return accountNumber;
-	}
-	public void setAccountNumber(int accountNumber) {
-		this.accountNumber = accountNumber;
-	}
+	
 	public String getBank() {
 		return bank;
 	}
@@ -99,11 +92,11 @@ public class BankCard {
 	}
 
 	public PeopleBankAccount getBankAccount() {
-		return bankAccount;
+		return peopleBankAccount;
 	}
 
 	public void setBankAccount(PeopleBankAccount bankAccount) {
-		this.bankAccount = bankAccount;
+		this.peopleBankAccount = bankAccount;
 	}
 
 	public List<EposTransactions> getEposTrans() {
@@ -122,10 +115,21 @@ public class BankCard {
 		AtmTrans = atmTrans;
 	}
 
+
+	public Integer getBankAccountId() {
+		return bankAccountId;
+	}
+
+	public void setBankAccountId(Integer bankAccountId) {
+		this.bankAccountId = bankAccountId;
+	}
+
 	@Override
 	public String toString() {
 		return "BankCard [bankcardId=" + bankcardId + ", cardNumber=" + cardNumber + ", sortCode=" + sortCode
-				+ ", bankAccountId=" + bankAccountId + ", accountNumber=" + accountNumber + ", bank=" + bank + "]";
+				+ ", bankAccountId=" + bankAccountId + ", bank=" + bank + "]";
 	}
+	
+	
 	
 }

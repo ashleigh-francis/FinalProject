@@ -13,7 +13,7 @@ import com.bae.project.dto.VehicleInfoDTO;
 
 public interface CitizenRepo extends JpaRepository<Citizen, Integer>{
 
-	List<CitizenInfoDTO> findByForenamesIgnoreCase(String name);
+	List<Citizen> findByForenamesIgnoreCase(String name);
 	
 	
 }

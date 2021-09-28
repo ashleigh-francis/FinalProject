@@ -8,13 +8,13 @@ public class CitizenInfoDTO {
 	private String dateOfBirth;
 	private String placeOfBirth;
 	private String sex;
-	private String businessName;
-	private String businessAddress;
-	private int passportNumber;
-	private String nationality;
-	private String isssuingCountry;
-	private String dateOfIssue;
-	private String dateOfExpiry;
+//	private String businessName;
+//	private String businessAddress;
+//	private long passportNumber;
+//	private String nationality;
+//	private String isssuingCountry;
+//	private String dateOfIssue;
+//	private String dateOfExpiry;
 	
 	public CitizenInfoDTO() {
 		super();
@@ -30,13 +30,13 @@ public class CitizenInfoDTO {
 		this.dateOfBirth = dateOfBirth;
 		this.placeOfBirth = placeOfBirth;
 		this.sex = sex;
-		this.businessName = businessName;
-		this.businessAddress = businessAddress;
-		this.passportNumber = passportNumber;
-		this.nationality = nationality;
-		this.isssuingCountry = isssuingCountry;
-		this.dateOfIssue = dateOfIssue;
-		this.dateOfExpiry = dateOfExpiry;
+//		this.businessName = businessName;
+//		this.businessAddress = businessAddress;
+//		this.passportNumber = passportNumber;
+//		this.nationality = nationality;
+//		this.isssuingCountry = isssuingCountry;
+//		this.dateOfIssue = dateOfIssue;
+//		this.dateOfExpiry = dateOfExpiry;
 	}
 
 	public String getForenames() {
@@ -86,62 +86,64 @@ public class CitizenInfoDTO {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
+//
+//	public String getBusinessName() {
+//		return businessName;
+//	}
+//
+//	public void setBusinessName(String businessName) {
+//		this.businessName = businessName;
+//	}
+//
+//	public String getBusinessAddress() {
+//		return businessAddress;
+//	}
+//
+//	public void setBusinessAddress(String businessAddress) {
+//		this.businessAddress = businessAddress;
+//	}
+//
+//	public long getPassportNumber() {
+//		return passportNumber;
+//	}
+//
+//	public void setPassportNumber(long passportNumber) {
+//		this.passportNumber = passportNumber;
+//	}
+//
+//	public String getNationality() {
+//		return nationality;
+//	}
+//
+//	public void setNationality(String nationality) {
+//		this.nationality = nationality;
+//	}
+//
+//	public String getIssuingCountry() {
+//		return isssuingCountry;
+//	}
+//
+//	public void setIssuingCountry(String issuingCountry) {
+//		this.isssuingCountry = issuingCountry;
+//	}
+//
+//	public String getDateOfIssue() {
+//		return dateOfIssue;
+//	}
+//
+//	public void setDateOfIssue(String dateOfIssue) {
+//		this.dateOfIssue = dateOfIssue;
+//	}
+//
+//	public String getDateOfExpiry() {
+//		return dateOfExpiry;
+//	}
+//
+//	public void setDateOfExpiry(String dateOfExpiry) {
+//		this.dateOfExpiry = dateOfExpiry;
+//	}
 
-	public String getBusinessName() {
-		return businessName;
-	}
 
-	public void setBusinessName(String businessName) {
-		this.businessName = businessName;
-	}
-
-	public String getBusinessAddress() {
-		return businessAddress;
-	}
-
-	public void setBusinessAddress(String businessAddress) {
-		this.businessAddress = businessAddress;
-	}
-
-	public int getPassportNumber() {
-		return passportNumber;
-	}
-
-	public void setPassportNumber(int passportNumber) {
-		this.passportNumber = passportNumber;
-	}
-
-	public String getNationality() {
-		return nationality;
-	}
-
-	public void setNationality(String nationality) {
-		this.nationality = nationality;
-	}
-
-	public String getIsssuingCountry() {
-		return isssuingCountry;
-	}
-
-	public void setIsssuingCountry(String isssuingCountry) {
-		this.isssuingCountry = isssuingCountry;
-	}
-
-	public String getDateOfIssue() {
-		return dateOfIssue;
-	}
-
-	public void setDateOfIssue(String dateOfIssue) {
-		this.dateOfIssue = dateOfIssue;
-	}
-
-	public String getDateOfExpiry() {
-		return dateOfExpiry;
-	}
-
-	public void setDateOfExpiry(String dateOfExpiry) {
-		this.dateOfExpiry = dateOfExpiry;
-	}
 	
 	
 }

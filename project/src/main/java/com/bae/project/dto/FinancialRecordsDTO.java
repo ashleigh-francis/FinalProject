@@ -2,13 +2,12 @@ package com.bae.project.dto;
 
 public class FinancialRecordsDTO {
 
-	private int accountNumber;
+	private long accountNumber;
 	private String bank;
 	private long cardNumber;
 	private String sortCode;
 	private String timestamp;
-	private long bankCardNumber;
-	private int payeeAccount;
+	private long payeeAccount;
 	private float amount;
 	private String vendor;
 	private String streetName;
@@ -42,7 +41,6 @@ public class FinancialRecordsDTO {
 		this.cardNumber = cardNumber;
 		this.sortCode = sortCode;
 		this.timestamp = timestamp;
-		this.bankCardNumber = bankCardNumber;
 		this.payeeAccount = payeeAccount;
 		this.amount = amount;
 		this.vendor = vendor;
@@ -135,11 +133,11 @@ public class FinancialRecordsDTO {
 		this.atmAmount = atmAmount;
 	}
 
-	public int getAccountNumber() {
+	public long getAccountNumber() {
 		return accountNumber;
 	}
 
-	public void setAccountNumber(int accountNumber) {
+	public void setAccountNumber(long accountNumber) {
 		this.accountNumber = accountNumber;
 	}
 
@@ -175,19 +173,11 @@ public class FinancialRecordsDTO {
 		this.timestamp = timestamp;
 	}
 
-	public long getBankCardNumber() {
-		return bankCardNumber;
-	}
-
-	public void setBankCardNumber(long bankCardNumber) {
-		this.bankCardNumber = bankCardNumber;
-	}
-
-	public int getPayeeAccount() {
+	public long getPayeeAccount() {
 		return payeeAccount;
 	}
 
-	public void setPayeeAccount(int payeeAccount) {
+	public void setPayeeAccount(long payeeAccount) {
 		this.payeeAccount = payeeAccount;
 	}
 
