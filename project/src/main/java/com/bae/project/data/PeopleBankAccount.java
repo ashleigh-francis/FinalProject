@@ -5,31 +5,58 @@ import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
 public class PeopleBankAccount {
 
+	
+	private Integer bankAccountId;
 	@Id
-	private int bankAccountId;
-	private int accountNumber;
+	private Long accountNumber;
 	private String bank;
 	private String forenames;
 	private String surname;
 	private String dateOfBirth;
 	private String homeAddress;
 	
-	@ManyToOne
-	private Citizen citizen;
-	@OneToMany(mappedBy = "")
+//	@ManyToOne
+//	@JoinColumn(name="forenames")
+//	private Citizen citizen;
+	
+	@OneToMany(mappedBy = "peopleBankAccount")
 	private List<BankCard> bankcards;
 	
 	public PeopleBankAccount() {
 		super();
 	}
+
 	
-	public PeopleBankAccount(int bankAccountId, int accountNumber, String bank, String forenames, String surname,
+	@Override
+	public int hashCode() {
+		return Objects.hash(accountNumber, bank, bankAccountId, dateOfBirth, forenames, homeAddress, surname);
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PeopleBankAccount other = (PeopleBankAccount) obj;
+		return Objects.equals(accountNumber, other.accountNumber) && Objects.equals(bank, other.bank)
+				&& Objects.equals(bankAccountId, other.bankAccountId) && Objects.equals(dateOfBirth, other.dateOfBirth)
+				&& Objects.equals(forenames, other.forenames) && Objects.equals(homeAddress, other.homeAddress)
+				&& Objects.equals(surname, other.surname);
+	}
+
+
+	public PeopleBankAccount(Integer bankAccountId, Long accountNumber, String bank, String forenames, String surname,
 			String dateOfBirth, String homeAddress) {
 		super();
 		this.bankAccountId = bankAccountId;
@@ -40,36 +67,21 @@ public class PeopleBankAccount {
 		this.dateOfBirth = dateOfBirth;
 		this.homeAddress = homeAddress;
 	}
-	
-	@Override
-	public int hashCode() {
-		return Objects.hash(accountNumber, bank, bankAccountId, dateOfBirth, forenames, homeAddress, surname);
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		PeopleBankAccount other = (PeopleBankAccount) obj;
-		return accountNumber == other.accountNumber && Objects.equals(bank, other.bank)
-				&& bankAccountId == other.bankAccountId && Objects.equals(dateOfBirth, other.dateOfBirth)
-				&& Objects.equals(forenames, other.forenames) && Objects.equals(homeAddress, other.homeAddress)
-				&& Objects.equals(surname, other.surname);
-	}
-	
-	public int getBankAccountId() {
+
+
+
+
+
+	public Integer getBankAccountId() {
 		return bankAccountId;
 	}
-	public void setBankAccountId(int bankAccountId) {
+	public void setBankAccountId(Integer bankAccountId) {
 		this.bankAccountId = bankAccountId;
 	}
-	public int getAccountNumber() {
+	public Long getAccountNumber() {
 		return accountNumber;
 	}
-	public void setAccountNumber(int accountNumber) {
+	public void setAccountNumber(Long accountNumber) {
 		this.accountNumber = accountNumber;
 	}
 	public String getBank() {
@@ -78,12 +90,7 @@ public class PeopleBankAccount {
 	public void setBank(String bank) {
 		this.bank = bank;
 	}
-	public String getForenames() {
-		return forenames;
-	}
-	public void setForenames(String forenames) {
-		this.forenames = forenames;
-	}
+	
 	public String getSurname() {
 		return surname;
 	}
@@ -103,13 +110,6 @@ public class PeopleBankAccount {
 		this.homeAddress = homeAddress;
 	}
 
-	public Citizen getCitizen() {
-		return citizen;
-	}
-
-	public void setCitizen(Citizen citizen) {
-		this.citizen = citizen;
-	}
 
 	public List<BankCard> getBankcards() {
 		return bankcards;
@@ -122,8 +122,16 @@ public class PeopleBankAccount {
 	@Override
 	public String toString() {
 		return "PeopleBankAccount [bankAccountId=" + bankAccountId + ", accountNumber=" + accountNumber + ", bank="
-				+ bank + ", forenames=" + forenames + ", surname=" + surname + ", dateOfBirth=" + dateOfBirth
+				+ bank + ", surname=" + surname + ", dateOfBirth=" + dateOfBirth
 				+ ", homeAddress=" + homeAddress + "]";
+	}
+
+	public String getForenames() {
+		return forenames;
+	}
+
+	public void setForenames(String forenames) {
+		this.forenames = forenames;
 	}
 	
 }

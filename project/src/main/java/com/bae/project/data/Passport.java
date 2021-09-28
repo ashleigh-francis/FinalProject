@@ -2,50 +2,52 @@ package com.bae.project.data;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
 public class Passport {
 	
 	@Id
-	private int passportNumber;
+	private long passportNumber;
 	private String surname;
-	private String givenName;
 	private String nationality;
 	private String dob;
 	private String sex;
 	private String placeOfBirth;
-	private String isssuingCountry;
+	private String issuingCountry;
 	private String dateOfIssue;
 	private String dateOfExpiry;
 	
-	@ManyToOne
-	private Citizen citizen;
+//	@ManyToOne
+//	@JoinColumn(name="givenName")
+	private String givenName;
 	
 	public Passport() {
 		super();
 	}
 
-	public Passport(int passportNumber, String surname, String givenName, String nationality, String dob, String sex,
-			String placeOfBirth, String isssuingCountry, String dateOfIssue, String dateOfExpiry) {
+	public Passport(int passportNumber, String surname, String nationality, String dob, String sex,
+			String placeOfBirth, String issuingCountry, String dateOfIssue, String dateOfExpiry) {
 		super();
 		this.passportNumber = passportNumber;
 		this.surname = surname;
-		this.givenName = givenName;
+		
 		this.nationality = nationality;
 		this.dob = dob;
 		this.sex = sex;
 		this.placeOfBirth = placeOfBirth;
-		this.isssuingCountry = isssuingCountry;
+		this.issuingCountry = issuingCountry;
 		this.dateOfIssue = dateOfIssue;
 		this.dateOfExpiry = dateOfExpiry;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(dateOfExpiry, dateOfIssue, dob, givenName, isssuingCountry, nationality, passportNumber,
+		return Objects.hash(dateOfExpiry, dateOfIssue, dob, issuingCountry, nationality, passportNumber,
 				placeOfBirth, sex, surname);
 	}
 
@@ -59,18 +61,18 @@ public class Passport {
 			return false;
 		Passport other = (Passport) obj;
 		return Objects.equals(dateOfExpiry, other.dateOfExpiry) && Objects.equals(dateOfIssue, other.dateOfIssue)
-				&& Objects.equals(dob, other.dob) && Objects.equals(givenName, other.givenName)
-				&& Objects.equals(isssuingCountry, other.isssuingCountry)
+				&& Objects.equals(dob, other.dob) 
+				&& Objects.equals(issuingCountry, other.issuingCountry)
 				&& Objects.equals(nationality, other.nationality) && passportNumber == other.passportNumber
 				&& Objects.equals(placeOfBirth, other.placeOfBirth) && Objects.equals(sex, other.sex)
 				&& Objects.equals(surname, other.surname);
 	}
 
-	public int getPassportNumber() {
+	public long getPassportNumber() {
 		return passportNumber;
 	}
 
-	public void setPassportNumber(int passportNumber) {
+	public void setPassportNumber(long passportNumber) {
 		this.passportNumber = passportNumber;
 	}
 
@@ -82,13 +84,6 @@ public class Passport {
 		this.surname = surname;
 	}
 
-	public String getGivenName() {
-		return givenName;
-	}
-
-	public void setGivenName(String givenName) {
-		this.givenName = givenName;
-	}
 
 	public String getNationality() {
 		return nationality;
@@ -122,12 +117,12 @@ public class Passport {
 		this.placeOfBirth = placeOfBirth;
 	}
 
-	public String getIsssuingCountry() {
-		return isssuingCountry;
+	public String getIssuingCountry() {
+		return issuingCountry;
 	}
 
-	public void setIsssuingCountry(String isssuingCountry) {
-		this.isssuingCountry = isssuingCountry;
+	public void setIssuingCountry(String issuingCountry) {
+		this.issuingCountry = issuingCountry;
 	}
 
 	public String getDateOfIssue() {
@@ -146,19 +141,21 @@ public class Passport {
 		this.dateOfExpiry = dateOfExpiry;
 	}
 
-	public Citizen getCitizen() {
-		return citizen;
+
+
+	public String getGivenName() {
+		return givenName;
 	}
 
-	public void setCitizen(Citizen citizen) {
-		this.citizen = citizen;
+	public void setGivenName(String givenName) {
+		this.givenName = givenName;
 	}
 
 	@Override
 	public String toString() {
-		return "Passport [passportNumber=" + passportNumber + ", surname=" + surname + ", givenName=" + givenName
+		return "Passport [passportNumber=" + passportNumber + ", surname=" + surname 
 				+ ", nationality=" + nationality + ", dob=" + dob + ", sex=" + sex + ", placeOfBirth=" + placeOfBirth
-				+ ", isssuingCountry=" + isssuingCountry + ", dateOfIssue=" + dateOfIssue + ", dateOfExpiry="
+				+ ", issuingCountry=" + issuingCountry + ", dateOfIssue=" + dateOfIssue + ", dateOfExpiry="
 				+ dateOfExpiry + "]";
 	}
 

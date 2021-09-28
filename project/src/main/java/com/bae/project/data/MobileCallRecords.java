@@ -4,22 +4,24 @@ import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
 public class MobileCallRecords {
 	
 	private String timestamp;
-	private String callerMSISDN;
-	private String callCellTowerId;
 	private String receiverMSISDN;
-	private int receiverTowerId;
+	private Integer receiverTowerId;
 	@Id
-	private int tableId;
+	private Integer tableId;
 	
 	@ManyToOne
+	@JoinColumn(name="callerMSISDN")
 	private PeopleMobile peopleMobile;
+	
 	@ManyToOne
+	@JoinColumn(name="callCellTowerId")
 	private CellTower cellTower;
 	
 	public MobileCallRecords() {
@@ -27,12 +29,11 @@ public class MobileCallRecords {
 	}
 
 
-	public MobileCallRecords(String timestamp, String callerMSISDN, String callCellTowerId, String receiverMSISDN,
-			int receiverTowerId, int tableId) {
+	public MobileCallRecords(String timestamp,  String receiverMSISDN,
+			Integer receiverTowerId, Integer tableId) {
 		super();
 		this.timestamp = timestamp;
-		this.callerMSISDN = callerMSISDN;
-		this.callCellTowerId = callCellTowerId;
+		
 		this.receiverMSISDN = receiverMSISDN;
 		this.receiverTowerId = receiverTowerId;
 		this.tableId = tableId;
@@ -41,7 +42,7 @@ public class MobileCallRecords {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(callCellTowerId, callerMSISDN, receiverMSISDN, receiverTowerId, tableId, timestamp);
+		return Objects.hash( receiverMSISDN, receiverTowerId, tableId, timestamp);
 	}
 
 
@@ -54,9 +55,7 @@ public class MobileCallRecords {
 		if (getClass() != obj.getClass())
 			return false;
 		MobileCallRecords other = (MobileCallRecords) obj;
-		return Objects.equals(callCellTowerId, other.callCellTowerId)
-				&& Objects.equals(callerMSISDN, other.callerMSISDN)
-				&& Objects.equals(receiverMSISDN, other.receiverMSISDN) && receiverTowerId == other.receiverTowerId
+		return  Objects.equals(receiverMSISDN, other.receiverMSISDN) && receiverTowerId == other.receiverTowerId
 				&& tableId == other.tableId && Objects.equals(timestamp, other.timestamp);
 	}
 
@@ -70,27 +69,6 @@ public class MobileCallRecords {
 		this.timestamp = timestamp;
 	}
 
-
-	public String getCallerMSISDN() {
-		return callerMSISDN;
-	}
-
-
-	public void setCallerMSISDN(String callerMSISDN) {
-		this.callerMSISDN = callerMSISDN;
-	}
-
-
-	public String getCallCellTowerId() {
-		return callCellTowerId;
-	}
-
-
-	public void setCallCellTowerId(String callCellTowerId) {
-		this.callCellTowerId = callCellTowerId;
-	}
-
-
 	public String getReceiverMSISDN() {
 		return receiverMSISDN;
 	}
@@ -101,22 +79,22 @@ public class MobileCallRecords {
 	}
 
 
-	public int getReceiverTowerId() {
+	public Integer getReceiverTowerId() {
 		return receiverTowerId;
 	}
 
 
-	public void setReceiverTowerId(int receiverTowerId) {
+	public void setReceiverTowerId(Integer receiverTowerId) {
 		this.receiverTowerId = receiverTowerId;
 	}
 
 
-	public int getTableId() {
+	public Integer getTableId() {
 		return tableId;
 	}
 
 
-	public void setTableId(int tableId) {
+	public void setTableId(Integer tableId) {
 		this.tableId = tableId;
 	}
 
@@ -143,8 +121,7 @@ public class MobileCallRecords {
 
 	@Override
 	public String toString() {
-		return "MobileCallRecords [timestamp=" + timestamp + ", callerMSISDN=" + callerMSISDN + ", callCellTowerId="
-				+ callCellTowerId + ", receiverMSISDN=" + receiverMSISDN + ", receiverTowerId=" + receiverTowerId
+		return "MobileCallRecords [timestamp=" + timestamp + ", receiverMSISDN=" + receiverMSISDN + ", receiverTowerId=" + receiverTowerId
 				+ ", tableId=" + tableId + "]";
 	}
 	

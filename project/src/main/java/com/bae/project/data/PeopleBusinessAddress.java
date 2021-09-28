@@ -4,41 +4,52 @@ import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
 public class PeopleBusinessAddress {
 	
-	private String personName;
+
 	private String homeAddress;
 	private String dateOfBirth;
 	@Id
 	private String businessName;
 	private String businessAddress;
+	private int tableId;
 	
-	@ManyToOne
-	private Citizen citizen;
+	private String personName;
 	
 	public PeopleBusinessAddress() {
 		super();
 	}
 
 
-	public PeopleBusinessAddress(String personName, String homeAddress, String dateOfBirth, String businessName,
-			String businessAddress) {
+
+
+
+	public PeopleBusinessAddress(String homeAddress, String dateOfBirth, String businessName, String businessAddress,
+			int tableId, String personName) {
 		super();
-		this.personName = personName;
 		this.homeAddress = homeAddress;
 		this.dateOfBirth = dateOfBirth;
 		this.businessName = businessName;
 		this.businessAddress = businessAddress;
+		this.tableId = tableId;
+		this.personName = personName;
 	}
+
+
+
 
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(businessAddress, businessName, dateOfBirth, homeAddress, personName);
+		return Objects.hash(businessAddress, businessName, dateOfBirth, homeAddress, personName, tableId);
 	}
+
+
+
 
 
 	@Override
@@ -52,18 +63,12 @@ public class PeopleBusinessAddress {
 		PeopleBusinessAddress other = (PeopleBusinessAddress) obj;
 		return Objects.equals(businessAddress, other.businessAddress)
 				&& Objects.equals(businessName, other.businessName) && Objects.equals(dateOfBirth, other.dateOfBirth)
-				&& Objects.equals(homeAddress, other.homeAddress) && Objects.equals(personName, other.personName);
+				&& Objects.equals(homeAddress, other.homeAddress) && Objects.equals(personName, other.personName)
+				&& tableId == other.tableId;
 	}
 
 
-	public String getPersonName() {
-		return personName;
-	}
 
-
-	public void setPersonName(String personName) {
-		this.personName = personName;
-	}
 
 
 	public String getHomeAddress() {
@@ -105,18 +110,36 @@ public class PeopleBusinessAddress {
 		this.businessAddress = businessAddress;
 	}
 
-	public Citizen getCitizen() {
-		return citizen;
+	public String getPersonName() {
+		return personName;
 	}
 
-	public void setCitizen(Citizen citizen) {
-		this.citizen = citizen;
+
+	public void setPersonName(String personName) {
+		this.personName = personName;
 	}
+
+
+
+	public int getTableId() {
+		return tableId;
+	}
+
+
+	public void setTableId(int tableId) {
+		this.tableId = tableId;
+	}
+
+
+
+
 
 	@Override
 	public String toString() {
-		return "PeopleBusinessAddress [personName=" + personName + ", homeAddress=" + homeAddress + ", dateOfBirth="
-				+ dateOfBirth + ", businessName=" + businessName + ", businessAddress=" + businessAddress + "]";
+		return "PeopleBusinessAddress [homeAddress=" + homeAddress + ", dateOfBirth=" + dateOfBirth + ", businessName="
+				+ businessName + ", businessAddress=" + businessAddress + ", tableId=" + tableId + ", personName="
+				+ personName + "]";
 	}
 
+	
 }

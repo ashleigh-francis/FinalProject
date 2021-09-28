@@ -1,5 +1,6 @@
 package com.bae.project.data;
 
+
 import java.util.List;
 import java.util.Objects;
 
@@ -12,16 +13,16 @@ import javax.persistence.OneToMany;
 public class AtmPoint {
 
 	@Id
-	private int atmId;
+	private Integer atmId;
 	private String operator;
 	@Column(name="streetName")
 	private String atmStreetName;
 	@Column(name="postcode")
 	private String atmPostcode;
 	@Column(name="latitude")
-	private double atmLatitude;
+	private Double atmLatitude;
 	@Column(name="longitude")
-	private double atmLongitude;
+	private Double atmLongitude;
 	
 	@OneToMany(mappedBy = "atmPoint")
 	private List<AtmTransaction> atmTrans;
@@ -30,8 +31,9 @@ public class AtmPoint {
 		super();
 	}
 
-	public AtmPoint(int atmId, String operator, String atmStreetName, String atmPostcode, double atmLatitude,
-			double atmLongitude) {
+
+	public AtmPoint(Integer atmId, String operator, String atmStreetName, String atmPostcode, Double atmLatitude,
+			Double atmLongitude) {
 		super();
 		this.atmId = atmId;
 		this.operator = operator;
@@ -40,6 +42,8 @@ public class AtmPoint {
 		this.atmLatitude = atmLatitude;
 		this.atmLongitude = atmLongitude;
 	}
+
+
 
 	@Override
 	public int hashCode() {
@@ -62,11 +66,11 @@ public class AtmPoint {
 				&& Objects.equals(operator, other.operator);
 	}
 
-	public int getAtmId() {
+	public Integer getAtmId() {
 		return atmId;
 	}
 
-	public void setAtmId(int atmId) {
+	public void setAtmId(Integer atmId) {
 		this.atmId = atmId;
 	}
 
@@ -94,19 +98,19 @@ public class AtmPoint {
 		this.atmPostcode = atmPostcode;
 	}
 
-	public double getAtmLatitude() {
+	public Double getAtmLatitude() {
 		return atmLatitude;
 	}
 
-	public void setAtmLatitude(double atmLatitude) {
+	public void setAtmLatitude(Double atmLatitude) {
 		this.atmLatitude = atmLatitude;
 	}
 
-	public double getAtmLongitude() {
+	public Double getAtmLongitude() {
 		return atmLongitude;
 	}
 
-	public void setAtmLongitude(double atmLongitude) {
+	public void setAtmLongitude(Double atmLongitude) {
 		this.atmLongitude = atmLongitude;
 	}
 

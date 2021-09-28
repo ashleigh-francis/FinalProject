@@ -4,35 +4,38 @@ import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
 public class VehicleObservations {
 
 	@Id
-	private int anprPointId;
+	
 	private String timestamp;
-	private String vehicleRegistrationNumber;
+
 	
 	@ManyToOne
-	private VehicleRegistration vehicleReg;
+	@JoinColumn(name="vehicleRegistrationNumber")
+	private VehicleRegistration vehicleRegistration;
 	@ManyToOne
+	@JoinColumn(name = "ANPRPointId")
 	private AnprCamera anprCamera;
 	
 	public VehicleObservations() {
 		super();
 	}
 
-	public VehicleObservations(int anprPointId, String timestamp, String vehicleRegistrationNumber) {
+	public VehicleObservations( String timestamp) {
 		super();
-		this.anprPointId = anprPointId;
+		
 		this.timestamp = timestamp;
-		this.vehicleRegistrationNumber = vehicleRegistrationNumber;
+		
 	}
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(anprPointId, timestamp, vehicleRegistrationNumber);
+		return Objects.hash( timestamp);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -43,35 +46,24 @@ public class VehicleObservations {
 		if (getClass() != obj.getClass())
 			return false;
 		VehicleObservations other = (VehicleObservations) obj;
-		return anprPointId == other.anprPointId && Objects.equals(timestamp, other.timestamp)
-				&& Objects.equals(vehicleRegistrationNumber, other.vehicleRegistrationNumber);
+		return Objects.equals(timestamp, other.timestamp);
+				
 	}
-	
-	public int getAnprPointId() {
-		return anprPointId;
-	}
-	public void setAnprPointId(int anprPointId) {
-		this.anprPointId = anprPointId;
-	}
+
 	public String getTimestamp() {
 		return timestamp;
 	}
 	public void setTimestamp(String timestamp) {
 		this.timestamp = timestamp;
 	}
-	public String getVehicleRegistrationNumber() {
-		return vehicleRegistrationNumber;
-	}
-	public void setVehicleRegistrationNumber(String vehicleRegistrationNumber) {
-		this.vehicleRegistrationNumber = vehicleRegistrationNumber;
+	
+
+	public VehicleRegistration getVehicleRegistration() {
+		return vehicleRegistration;
 	}
 
-	public VehicleRegistration getVehicleReg() {
-		return vehicleReg;
-	}
-
-	public void setVehicleReg(VehicleRegistration vehicleReg) {
-		this.vehicleReg = vehicleReg;
+	public void setVehicleRegistration(VehicleRegistration vehicleRegistration) {
+		this.vehicleRegistration = vehicleRegistration;
 	}
 
 	public AnprCamera getAnprCamera() {
@@ -84,8 +76,8 @@ public class VehicleObservations {
 
 	@Override
 	public String toString() {
-		return "VehicleObservations [anprPointId=" + anprPointId + ", timestamp=" + timestamp
-				+ ", vehicleRegistrationNumber=" + vehicleRegistrationNumber + "]";
+		return "VehicleObservations [ timestamp=" + timestamp
+				 + "]";
 	}
 	
 	

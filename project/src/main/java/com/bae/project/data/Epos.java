@@ -10,14 +10,14 @@ import javax.persistence.OneToMany;
 @Entity
 public class Epos {
 	
-	private int id;
+	private Integer id;
 	private String vendor;
 	private String streetName;
 	private String postcode;
-	private double latitude;
-	private double longitude;
+	private Double latitude;
+	private Double longitude;
 	@Id
-	private int tableId;
+	private Integer tableId;
 	
 	
 	@OneToMany(mappedBy = "epos")
@@ -28,8 +28,9 @@ public class Epos {
 	}
 
 
-	public Epos(int id, String vendor, String streetName, String postcode, double latitude, double longitude,
-			int tableId) {
+
+	public Epos(Integer id, String vendor, String streetName, String postcode, Double latitude, Double longitude,
+			Integer tableId) {
 		super();
 		this.id = id;
 		this.vendor = vendor;
@@ -39,6 +40,7 @@ public class Epos {
 		this.longitude = longitude;
 		this.tableId = tableId;
 	}
+
 
 
 	@Override
@@ -63,12 +65,12 @@ public class Epos {
 	}
 
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -103,32 +105,32 @@ public class Epos {
 	}
 
 
-	public double getLatitude() {
+	public Double getLatitude() {
 		return latitude;
 	}
 
 
-	public void setLatitude(double latitude) {
+	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
 	}
 
 
-	public double getLongitude() {
+	public Double getLongitude() {
 		return longitude;
 	}
 
 
-	public void setLongitude(double longitude) {
+	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
 
 
-	public int getTableId() {
+	public Integer getTableId() {
 		return tableId;
 	}
 
 
-	public void setTableId(int tableId) {
+	public void setTableId(Integer tableId) {
 		this.tableId = tableId;
 	}
 

@@ -10,5 +10,5 @@ import com.bae.project.dto.MobileRecordsDTO;
 
 public interface MobileRepo extends JpaRepository<PeopleMobile, Integer> {
 
-	List<MobileRecordsDTO> findByForenameIgnoreCase(String name);
+
 }

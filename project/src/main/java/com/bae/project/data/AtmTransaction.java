@@ -13,35 +13,35 @@ public class AtmTransaction {
 	
 		@Column(name = "timestamp")
 		private String atmTimestamp;
-		private int atmId;
-		@Column(name = "bankCardNumber")
-		private long atmBankCardNumber;
 		private String type;
 		@Column(name = "amount")
-		private float atmAmount;
+		private Float atmAmount;
 		@Id
-		private int id;
+		private Integer id;
 			
 		@ManyToOne
+		@JoinColumn(name="bankCardNumber")
 		private BankCard bankcard;
 		
 		@ManyToOne
+		@JoinColumn(name="atmId")
 		private AtmPoint atmPoint;
 		
 		public AtmTransaction() {
 			super();
 		}
 
-		public AtmTransaction(String atmTimestamp, int atmId, long atmBankCardNumber, String type, float atmAmount,
-				int id, BankCard bankcard, AtmPoint atmPoint) {
+		
+
+		public AtmTransaction(String atmTimestamp, String type, Float atmAmount, Integer id) {
 			super();
 			this.atmTimestamp = atmTimestamp;
-			this.atmId = atmId;
-			this.atmBankCardNumber = atmBankCardNumber;
 			this.type = type;
 			this.atmAmount = atmAmount;
 			this.id = id;
 		}
+
+
 
 		public String getAtmTimestamp() {
 			return atmTimestamp;
@@ -51,21 +51,6 @@ public class AtmTransaction {
 			this.atmTimestamp = atmTimestamp;
 		}
 
-		public int getAtmId() {
-			return atmId;
-		}
-
-		public void setAtmId(int atmId) {
-			this.atmId = atmId;
-		}
-
-		public long getAtmBankCardNumber() {
-			return atmBankCardNumber;
-		}
-
-		public void setAtmBankCardNumber(long atmBankCardNumber) {
-			this.atmBankCardNumber = atmBankCardNumber;
-		}
 
 		public String getType() {
 			return type;
@@ -75,19 +60,19 @@ public class AtmTransaction {
 			this.type = type;
 		}
 
-		public float getAtmAmount() {
+		public Float getAtmAmount() {
 			return atmAmount;
 		}
 
-		public void setAtmAmount(float atmAmount) {
+		public void setAtmAmount(Float atmAmount) {
 			this.atmAmount = atmAmount;
 		}
 
-		public int getId() {
+		public Integer getId() {
 			return id;
 		}
 
-		public void setId(int id) {
+		public void setId(Integer id) {
 			this.id = id;
 		}
 
@@ -109,7 +94,7 @@ public class AtmTransaction {
 
 		@Override
 		public int hashCode() {
-			return Objects.hash(atmAmount, atmBankCardNumber, atmId, atmTimestamp, id, type);
+			return Objects.hash(atmAmount, atmTimestamp, id, type);
 		}
 
 		@Override
@@ -122,14 +107,13 @@ public class AtmTransaction {
 				return false;
 			AtmTransaction other = (AtmTransaction) obj;
 			return Float.floatToIntBits(atmAmount) == Float.floatToIntBits(other.atmAmount)
-					&& atmBankCardNumber == other.atmBankCardNumber && atmId == other.atmId
+			
 					&& Objects.equals(atmTimestamp, other.atmTimestamp) && id == other.id && Objects.equals(type, other.type);
 		}
 
 		@Override
 		public String toString() {
-			return "AtmTransaction [atmTimestamp=" + atmTimestamp + ", atmId=" + atmId + ", atmBankCardNumber="
-					+ atmBankCardNumber + ", type=" + type + ", atmAmount=" + atmAmount + ", id=" + id + "]";
+			return "AtmTransaction [atmTimestamp=" + atmTimestamp +  ", type=" + type + ", atmAmount=" + atmAmount + ", id=" + id + "]";
 		}
 
 		

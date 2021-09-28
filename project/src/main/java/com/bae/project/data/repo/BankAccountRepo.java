@@ -8,7 +8,6 @@ import com.bae.project.data.PeopleBankAccount;
 import com.bae.project.dto.FinancialRecordsDTO;
 
 
-public interface FinancialRepo extends JpaRepository<PeopleBankAccount, Integer> {
+public interface BankAccountRepo extends JpaRepository<PeopleBankAccount, Integer> {
 
-	List<FinancialRecordsDTO> findByForenamesIgnoreCase(String name);
 }

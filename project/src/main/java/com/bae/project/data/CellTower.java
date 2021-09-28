@@ -10,23 +10,23 @@ import javax.persistence.OneToMany;
 @Entity
 public class CellTower {
 	
-	private int cellTowerId;
-	private String operator;
-	private int type;
-	private double latitude;
-	private double longitude;
 	@Id
-	private int tableId;
+	private Integer cellTowerId;
+	private String operator;
+	private String type;
+	private Double latitude;
+	private Double longitude;
+	private Integer tableId;
 	
-	@OneToMany
+	@OneToMany(mappedBy ="cellTower")
 	private List<MobileCallRecords> mobileCallRecords;
 	
 	public CellTower() {
 		super();
 	}
 
-
-	public CellTower(int cellTowerId, String operator, int type, double latitude, double longitude, int tableId) {
+	public CellTower(Integer cellTowerId, String operator, String type, Double latitude, Double longitude,
+			Integer tableId) {
 		super();
 		this.cellTowerId = cellTowerId;
 		this.operator = operator;
@@ -35,6 +35,7 @@ public class CellTower {
 		this.longitude = longitude;
 		this.tableId = tableId;
 	}
+
 
 
 	@Override
@@ -59,12 +60,12 @@ public class CellTower {
 	}
 
 
-	public int getCellTowerId() {
+	public Integer getCellTowerId() {
 		return cellTowerId;
 	}
 
 
-	public void setCellTowerId(int cellTowerId) {
+	public void setCellTowerId(Integer cellTowerId) {
 		this.cellTowerId = cellTowerId;
 	}
 
@@ -79,42 +80,42 @@ public class CellTower {
 	}
 
 
-	public int getType() {
+	public String getType() {
 		return type;
 	}
 
 
-	public void setType(int type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 
 
-	public double getLatitude() {
+	public Double getLatitude() {
 		return latitude;
 	}
 
 
-	public void setLatitude(double latitude) {
+	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
 	}
 
 
-	public double getLongitude() {
+	public Double getLongitude() {
 		return longitude;
 	}
 
 
-	public void setLongitude(double longitude) {
+	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
 
 
-	public int getTableId() {
+	public Integer getTableId() {
 		return tableId;
 	}
 
 
-	public void setTableId(int tableId) {
+	public void setTableId(Integer tableId) {
 		this.tableId = tableId;
 	}
 

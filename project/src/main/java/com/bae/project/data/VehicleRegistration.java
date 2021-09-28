@@ -1,18 +1,21 @@
 package com.bae.project.data;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
 public class VehicleRegistration {
 
-	@Id
-	private int registrationID;
+	
+	private Integer registrationID;
 	private String registrationDate;
+	@Id
 	private String vehicleRegistrationNo;
 	private String make;
 	private String model;
@@ -23,51 +26,40 @@ public class VehicleRegistration {
 	private String dateOfBirth;
 	private String driverLicenceID;
 	
-	@ManyToOne
-	private Citizen citizen;
-	@OneToMany
-	private List<VehicleObservations> vehicleObvs;
+//	@ManyToOne
+//	@JoinColumn(name="forenames")
+//	private Citizen citizen;
+	@OneToMany(mappedBy ="vehicleRegistration")
+	private List<VehicleObservations> vehicleObservations;
 	
 	public VehicleRegistration() {
 		super();
 	}
 	
-	public VehicleRegistration(String driverLicenceID, String forenames, String address, String make, String surname,
-			String vehicleRegistrationNo, String colour, String dateOfBirth, String model, String registrationDate,
-			int registrationID) {
+	public VehicleRegistration(Integer registrationID, String registrationDate, String vehicleRegistrationNo, String make,
+			String model, String colour, String forenames, String surname, String address, String dateOfBirth,
+			String driverLicenceID) {
 		super();
-		this.driverLicenceID = driverLicenceID;
-		this.forenames = forenames;
-		this.address = address;
-		this.make = make;
-		this.surname = surname;
-		this.vehicleRegistrationNo = vehicleRegistrationNo;
-		this.colour = colour;
-		this.dateOfBirth = dateOfBirth;
-		this.model = model;
-		this.registrationDate = registrationDate;
 		this.registrationID = registrationID;
+		this.registrationDate = registrationDate;
+		this.vehicleRegistrationNo = vehicleRegistrationNo;
+		this.make = make;
+		this.model = model;
+		this.colour = colour;
+		this.forenames = forenames;
+		this.surname = surname;
+		this.address = address;
+		this.dateOfBirth = dateOfBirth;
+		this.driverLicenceID = driverLicenceID;
 	}
-		
+
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((address == null) ? 0 : address.hashCode());
-		result = prime * result + ((colour == null) ? 0 : colour.hashCode());
-		result = prime * result + ((dateOfBirth == null) ? 0 : dateOfBirth.hashCode());
-		result = prime * result + ((driverLicenceID == null) ? 0 : driverLicenceID.hashCode());
-		result = prime * result + ((forenames == null) ? 0 : forenames.hashCode());
-		result = prime * result + ((make == null) ? 0 : make.hashCode());
-		result = prime * result + ((model == null) ? 0 : model.hashCode());
-		result = prime * result + ((registrationDate == null) ? 0 : registrationDate.hashCode());
-		result = prime * result + registrationID;
-		result = prime * result + ((surname == null) ? 0 : surname.hashCode());
-		result = prime * result + ((vehicleRegistrationNo == null) ? 0 : vehicleRegistrationNo.hashCode());
-		return result;
+		return Objects.hash(address, colour, dateOfBirth, driverLicenceID, forenames, make, model, registrationDate,
+				registrationID, surname, vehicleRegistrationNo);
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -77,66 +69,20 @@ public class VehicleRegistration {
 		if (getClass() != obj.getClass())
 			return false;
 		VehicleRegistration other = (VehicleRegistration) obj;
-		if (address == null) {
-			if (other.address != null)
-				return false;
-		} else if (!address.equals(other.address))
-			return false;
-		if (colour == null) {
-			if (other.colour != null)
-				return false;
-		} else if (!colour.equals(other.colour))
-			return false;
-		if (dateOfBirth == null) {
-			if (other.dateOfBirth != null)
-				return false;
-		} else if (!dateOfBirth.equals(other.dateOfBirth))
-			return false;
-		if (driverLicenceID == null) {
-			if (other.driverLicenceID != null)
-				return false;
-		} else if (!driverLicenceID.equals(other.driverLicenceID))
-			return false;
-		if (forenames == null) {
-			if (other.forenames != null)
-				return false;
-		} else if (!forenames.equals(other.forenames))
-			return false;
-		if (make == null) {
-			if (other.make != null)
-				return false;
-		} else if (!make.equals(other.make))
-			return false;
-		if (model == null) {
-			if (other.model != null)
-				return false;
-		} else if (!model.equals(other.model))
-			return false;
-		if (registrationDate == null) {
-			if (other.registrationDate != null)
-				return false;
-		} else if (!registrationDate.equals(other.registrationDate))
-			return false;
-		if (registrationID != other.registrationID)
-			return false;
-		if (surname == null) {
-			if (other.surname != null)
-				return false;
-		} else if (!surname.equals(other.surname))
-			return false;
-		if (vehicleRegistrationNo == null) {
-			if (other.vehicleRegistrationNo != null)
-				return false;
-		} else if (!vehicleRegistrationNo.equals(other.vehicleRegistrationNo))
-			return false;
-		return true;
+		return Objects.equals(address, other.address) && Objects.equals(colour, other.colour)
+				&& Objects.equals(dateOfBirth, other.dateOfBirth)
+				&& Objects.equals(driverLicenceID, other.driverLicenceID) && Objects.equals(forenames, other.forenames)
+				&& Objects.equals(make, other.make) && Objects.equals(model, other.model)
+				&& Objects.equals(registrationDate, other.registrationDate) && registrationID == other.registrationID
+				&& Objects.equals(surname, other.surname)
+				&& Objects.equals(vehicleRegistrationNo, other.vehicleRegistrationNo);
 	}
-	
-	public int getRegistrationID() {
+
+	public Integer getRegistrationID() {
 		return registrationID;
 	}
 	
-	public void setRegistrationID(int registrationID) {
+	public void setRegistrationID(Integer registrationID) {
 		this.registrationID = registrationID;
 	}
 	
@@ -180,14 +126,6 @@ public class VehicleRegistration {
 		this.colour = colour;
 	}
 	
-	public String getForenames() {
-		return forenames;
-	}
-	
-	public void setForenames(String forenames) {
-		this.forenames = forenames;
-	}
-	
 	public String getSurname() {
 		return surname;
 	}
@@ -220,22 +158,24 @@ public class VehicleRegistration {
 		this.driverLicenceID = driverLicenceID;
 	}
 	
-	public Citizen getCitizen() {
-		return citizen;
+	
+	public List<VehicleObservations> getVehicleObservations() {
+		return vehicleObservations;
 	}
 	
-	public void setCitizen(Citizen citizen) {
-		this.citizen = citizen;
+	public void setVehicleObservations(List<VehicleObservations> vehicleObservations) {
+		this.vehicleObservations = vehicleObservations;
 	}
 	
-	public List<VehicleObservations> getVehicleObvs() {
-		return vehicleObvs;
+
+	public String getForenames() {
+		return forenames;
 	}
-	
-	public void setVehicleObvs(List<VehicleObservations> vehicleObvs) {
-		this.vehicleObvs = vehicleObvs;
+
+	public void setForenames(String forenames) {
+		this.forenames = forenames;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "VehicleRegistration [registrationID=" + registrationID + ", registrationDate=" + registrationDate
@@ -243,5 +183,6 @@ public class VehicleRegistration {
 				+ ", colour=" + colour + ", forenames=" + forenames + ", surname=" + surname + ", address=" + address
 				+ ", dateOfBirth=" + dateOfBirth + ", driverLicenceID=" + driverLicenceID + "]";
 	}
+	
 	
 }
