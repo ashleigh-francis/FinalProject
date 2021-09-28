@@ -35,11 +35,6 @@ public class CitizenController {
 		return this.service.getCitizenInfo(citizen);
 
 	}
-
-//	@GetMapping("/getAll/{field}/{direction}")
-//	public ResponseEntity<List<CitizenInfoDTO>> sortAndFilterDucks(@PathVariable String field, @PathVariable Direction direction, @RequestBody Citizen citizen) {
-//		return ResponseEntity.ok(this.service.sortAndFilterCitizen(direction, field, citizen));
-//	}
 	@GetMapping("/getVehicleInfo")
 	public List<VehicleInfoDTO> getVehicleInfo(@RequestBody VehicleRegistration vehicleRegistration,
 			VehicleObservations vehicleObservations, AnprCamera anprCamera) {

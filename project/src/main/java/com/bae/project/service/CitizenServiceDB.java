@@ -148,7 +148,9 @@ public class CitizenServiceDB implements CitizenService {
 
 	}
 
-	public VehicleInfoDTO mapToDTO(VehicleRegistration VehicleReg, VehicleObservations VehicleObvs, AnprCamera Anpr) {
+	public VehicleInfoDTO mapToDTO(VehicleRegistration VehicleReg, VehicleObservations VehicleObvs
+//			,AnprCamera Anpr
+			) {
 		VehicleInfoDTO dtoV = new VehicleInfoDTO();
 		dtoV.setDriverLicenceID(VehicleReg.getDriverLicenceID());
 		dtoV.setVehicleRegistrationNo(VehicleReg.getVehicleRegistrationNo());
@@ -156,22 +158,26 @@ public class CitizenServiceDB implements CitizenService {
 		dtoV.setModel(VehicleReg.getModel());
 		dtoV.setColour(VehicleReg.getColour());
 		dtoV.setTimestamp(VehicleObvs.getTimestamp());
-		dtoV.setAnprPointId(Anpr.getAnprId());
-		dtoV.setStreetName(Anpr.getStreetName());
-		dtoV.setLatitude(Anpr.getLatitude());
-		dtoV.setLongitude(Anpr.getLongitude());
+		AnprCamera anpr = VehicleObvs.getAnprCamera();
+		dtoV.setAnprPointId(anpr.getAnprId());
+		dtoV.setStreetName(anpr.getStreetName());
+		dtoV.setLatitude(anpr.getLatitude());
+		dtoV.setLongitude(anpr.getLongitude());
 
 		return dtoV;
 	}
 
-	public MobileRecordsDTO mapToDTO(PeopleMobile PeopleMobile, MobileCallRecords MobileCall, CellTower CellTower) {
+	public MobileRecordsDTO mapToDTO(PeopleMobile PeopleMobile, MobileCallRecords MobileCall
+//			,CellTower CellTower
+			) {
 		MobileRecordsDTO dtoM = new MobileRecordsDTO();
 		dtoM.setPhoneNumber(PeopleMobile.getPhoneNumber());
 		dtoM.setNetwork(PeopleMobile.getNetwork());
 		dtoM.setTimestamp(MobileCall.getTimestamp());
 		dtoM.setReceiverMSISDN(MobileCall.getReceiverMSISDN());
-		dtoM.setLatitude(CellTower.getLatitude());
-		dtoM.setLongitude(CellTower.getLongitude());
+		CellTower tower = MobileCall.getCellTower();
+		dtoM.setLatitude(tower.getLatitude());
+		dtoM.setLongitude(tower.getLongitude());
 
 		return dtoM;
 	}
@@ -203,8 +209,12 @@ public class CitizenServiceDB implements CitizenService {
 			VehicleObservations vehicleObservations, AnprCamera anprCamera) {
 		List<VehicleInfoDTO> vehicleDTO = new ArrayList<>();
 		List<VehicleRegistration> vehicles = this.repoV.findAll(Example.of(vehicleRegistration));
-		for (int i = 0; i < vehicles.size(); i++) {
+		for (VehicleRegistration registration : vehicles) {
+			for (VehicleObservations observations : registration.getVehicleObservations()) {
+					vehicleDTO.add(this.mapToDTO(registration, observations));
+			}
 		}
+
 
 		return vehicleDTO;
 	}
@@ -214,7 +224,11 @@ public class CitizenServiceDB implements CitizenService {
 			CellTower cellTower) {
 		List<MobileRecordsDTO> mobileDTO = new ArrayList<>();
 		List<PeopleMobile> mobiles = this.repoM.findAll(Example.of(peopleMobile));
-
+		for (PeopleMobile mobile : mobiles) {
+			for (MobileCallRecords records : mobile.getMobileCallRecords()) {
+					mobileDTO.add(this.mapToDTO(mobile, records));
+			}
+		}
 		return mobileDTO;
 	}
 
