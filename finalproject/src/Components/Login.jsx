@@ -15,7 +15,7 @@ const Login = () => {
         <>
             <form action = "/Search">
 
-                <h1>Welcome to the Citizen Database</h1>
+                <h1><b>Welcome to the Citizen Database</b></h1>
                 <br/>
                 <br/>
             <label>Username:</label> 
@@ -39,7 +39,7 @@ const Login = () => {
                 onInput={e => setPassword(e.target.value)}/>
             <br/>
             <br/>
-            <Button type = "submit">Submit</Button>
+            <Button variant="danger"type = "submit">Login</Button>
             </form>
         </>
         

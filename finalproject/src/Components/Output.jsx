@@ -8,22 +8,23 @@ import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import React from 'react-bootstrap';
+import React, { Table } from 'react-bootstrap';
 import CardGroup from 'react-bootstrap/CardGroup';
 
 
 const Output = () => {
 
-    const maxLength = 10
-    const financialText = "This is an example of the Financial Records"
-    const phoneText = "This is an example of the Phone Records"
-    const vehicleText = "This is an example of the Vehicle Records"
+    const maxLength = 25
+    const financialText = "Click to view information."
+    const phoneText = "Click to view information."
+    const vehicleText = "Click to view information."
     const forenames = "Joe"
     const surname = "Bloggs"
     const homeAddress = "1 Street Lane"
     const dateOfBirth = "01/01/1990"
     const placeOfBirth = "Manchester"
     const sex = "Male"
+    const citizenName = "Joe Bloggs"
 
     const [Financials, setFinancials] = useState([]);
     const [error, setError] = useState('');
@@ -46,61 +47,62 @@ const Output = () => {
     }
     return (
         <>
-            <h1>You have selected [Citizen]</h1>
+            <Table >
+                <thead>
+                    <tr>
+                        <th colSpan="3"><h1><b>Currently showing information for {citizenName} </b></h1> <Card text="dark">
+                            <Card.Header><h4>Biographical Information</h4></Card.Header>
+                            <Card.Body>
+                                <Card.Title></Card.Title>
+                                <Card.Text>
+                                    <h5><b>Name: {forenames} {surname}</b></h5>
+                                    <h5>Home Address: {homeAddress}</h5>
+                                    <h5>Date of Birth: {dateOfBirth}</h5>
+                                    <h5>Place of Birth: {placeOfBirth}</h5>
+                                    <h5>Sex: {sex}</h5>
+                                </Card.Text>
+                            </Card.Body>
+                        </Card> </th>
 
-            <Card className="text-center" style={{width:'18rem'}}>
-                <Card.Header><h4>Biographical Information</h4></Card.Header>
-                <Card.Body>
-                    <Card.Title></Card.Title>
-                    <Card.Text>
-                        <h5><b>Name: {forenames} {surname}</b></h5>
-                        <h5>Home Address: {homeAddress}</h5>
-                        <h5>Date of Birth: {dateOfBirth}</h5>
-                        <h5>Place of Birth: {placeOfBirth}</h5>
-                        <h5>Sex: {sex}</h5>
-                    </Card.Text>
-                </Card.Body>
-                <Card.Footer className="text-muted"></Card.Footer>
-            </Card>
-            <br />
+                    </tr>
+                </thead>
+                <tbody>
 
-            <Container>
-                <CardGroup>
-                    <Card border="dark">
-                        <Card.Header><b>Financial Records</b></Card.Header>
-                        <Card.Body>
-                            <Card.Title></Card.Title>
-                            <Card.Text>
-                                <Text_Hider text={financialText} maxLength={maxLength} />
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                    <br />
-                   
 
-                    <Card border="dark">
-                        <Card.Header><b>Phone Records</b></Card.Header>
-                        <Card.Body>
-                            <Card.Title></Card.Title>
-                            <Card.Text>
-                                <Text_Hider text={phoneText} maxLength={maxLength} />
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                    <br />
-
-                    <Card border="dark">
-                        <Card.Header><b>Vehicle Records</b></Card.Header>
-                        <Card.Body>
-                            <Card.Title></Card.Title>
-                            <Card.Text>
-                                <Text_Hider text={vehicleText} maxLength={maxLength} />
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                </CardGroup>
-            </Container>
-            <br />
+                    <tr>
+                        <td>
+                            <Card text="dark">
+                                <Card.Header><b>Financial Records</b></Card.Header>
+                                <Card.Body>
+                                    <Card.Text>
+                                        <Text_Hider text={financialText} maxLength={maxLength} />
+                                    </Card.Text>
+                                </Card.Body>
+                            </Card>
+                        </td>
+                        <td>
+                            <Card text="dark">
+                                <Card.Header><b>Phone Records</b></Card.Header>
+                                <Card.Body>
+                                    <Card.Text>
+                                        <Text_Hider text={phoneText} maxLength={maxLength} />
+                                    </Card.Text>
+                                </Card.Body>
+                            </Card>
+                        </td>
+                        <td>
+                            <Card text="dark">
+                                <Card.Header><b>Vehicle Records</b></Card.Header>
+                                <Card.Body>
+                                    <Card.Text>
+                                        <Text_Hider text={vehicleText} maxLength={maxLength} />
+                                    </Card.Text>
+                                </Card.Body>
+                            </Card>
+                        </td>
+                    </tr>
+                </tbody>
+            </Table>
         </>
     )
 }

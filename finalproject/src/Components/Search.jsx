@@ -42,7 +42,7 @@ const Search = () => {
         <>
             <form action="/CitizenCon">
                 {/* onSubmit={MakeRequest} */}
-                <h1>Please Enter the Search Fields</h1>
+                <h1><b>Please Enter the Search Fields</b></h1>
                 <br />
                 <br />
 
@@ -69,7 +69,7 @@ const Search = () => {
                 <br />
                 <label> Date of Birth: </label>
                 <br />
-                <input name="dateOfBirth"
+                <input  name="dateOfBirth"
                     type="text"
                     placeholder="Enter date of birth"
                     value={dateOfBirth}
@@ -77,7 +77,7 @@ const Search = () => {
                 />
                 <br />
                 <br />
-                <Button type="submit">Search</Button>
+                <Button variant="danger" type="submit">Search</Button>
             </form>
         </>
     );

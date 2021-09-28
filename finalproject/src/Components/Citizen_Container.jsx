@@ -17,6 +17,9 @@ const CitizenContainer = () => {
 
   return (
     <>
+      <h2><b>Search Results</b></h2>
+      <br/>
+      <br/>
       {error && (
       <p>
         Error:

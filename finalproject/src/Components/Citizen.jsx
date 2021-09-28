@@ -12,7 +12,7 @@ const Citizen = ({
             <h3>{forenames} {surname}</h3>
             <p>Date of Birth: {dateOfBirth}</p>
             <form action="/Output">
-                <Button type="onClick">Info</Button>
+                <Button variant="danger" type="onClick">Information</Button>
             </form>
             <br />
             <br />

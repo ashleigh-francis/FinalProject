@@ -16,9 +16,9 @@ const Text_Hider = ({text,maxLength}) => {
             <br/>
 
             {hidden ? (
-                <Button onClick={() => setHidden(false)}> Read More</Button>
+                <Button variant="outline-danger" onClick={() => setHidden(false)}> Read More</Button>
             ) : (
-                <Button onClick={() => setHidden(true)}> Read Less</Button>
+                <Button variant="outline-danger" onClick={() => setHidden(true)}> Read Less</Button>
             )}
             <br/>
             <br/>
