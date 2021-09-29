@@ -119,3 +119,89 @@ On signing into the machines successfully we first ran updates for the OS and th
 
 Additionally the managers also had SQL core installed on it, so that we could access the AWS RDS database and begin the setup of the database.
 
+Following this we cloned down the repository containing the application that we were required to deploy to the cloud platform. Initially we checked through the files to ensure we had all the pertinent information to hand including any ports that were required for the application to run properly and performed research on the ports required for the Docker Swarm we were to create. We double checked the security groups and ensured that these ports were open on the security group to make sure that no network issue would cause the application not to work. 
+
+From here we went about creating three Dockerfiles, one each for the frontend, backend and database. We also created the NGINX.conf. The pictures below show the Dockerfiles for the frontend, backend, database and the NGINX.conf file in that order.
+
+#### Frontend Dockerfile
++++ Insert Picture Here +++
+
+#### Backend Dockerfile
++++ Insert Picture Here +++
+
+#### Database Dockerfile
++++ Insert Picture Here +++
+
+#### NGINX Configuration File
++++ Insert Picture Here +++
+
+> Testing the work so far
+
+With this work completed we decided it was a good point at which to test out our work so far. We therefore ran the services for the first time to ensure that what we had completed was working as intended.
+
+* The docker images were created using the `docker build` commands.
+* NGINX also required the use of the `--mount` options for the nginx.conf file to ensure that this was setup appropriately for the project.
+
+This confirmed that what we had completed so far was functional. At this point we pushed to images to DockerHub knowing that these images would fulfil the needs of the project.
+
++++Image of dockerhub images+++
+
+We then created the docker-compose.yaml file for the swarm orchestration. Please see this pictured below.
+
+#### Docker-Compose.yaml file.
++++Docker-Compose.yaml picture +++
+
+Once this was created we initiated the swarm on the EC2 Instance named "Manager#1" using the command `docker swarm init` and added "Manage#2" as the second manager. We then proceeded to add the workers to the swarm as well.Finally to confirm that the manager and worker were setup properly and both in the swarm, we ran `docker node ls` to produce the below output.
+
+#### Docker Swarm Picture
+
++++DOCKER SWARM NODE PICTURE+++
+
+Finally to ensure that the work so far worked with the docker swarm the command `docker stack deploy --compose-file docker-compose.yaml final_project` was run. Containers were then deployed to each of the VM's, as pictured below:
+
++++PICTURE OF CONTAINERS SHOWING THEY'RE UP AND RUNNING+++
+
+### **CI Pipeline Diagram and Structure**
+
+At this point we took stock of everything we had done and confirmed that the network was secure, the images were appropriately built, the swarm was functioning correctly and the application was accessible both internally and externally. Risk assessments were being kept up to date with the issues we had faced and the Jira board was showing good progression of tasks and that we've put outselves in a great position to finish the minimum viable product early so that we could start looking at additional features (see MoSCoW prioritisation list and MVP from the planning overview picture earlier in the document).
+
+#### CI Pipeline Diagram
+
++++ PICTURE OF DIAGRAM FOR THE CI PIPELINE +++
+
+With the above overview picture in mind we set about creating the Jenkins Pipeline.
+
+1) Installed Jenkins onto the manager server, and ran the initial setup.
+2)Created a pipeline, including build triggers, and some additional quality of life features for example limiting the numnber of builds to 5 as to not become cumbersome, and creating a link to the github repository for ease of access.
+
+From here we were satisfied that this was the Jenkins side of the project was setup and that we needed to move onto the Jenkinsfile that would be held on the GitHub Repository. Please see this pictured below:
+
++++ PICTURE OF THE JENKINSFILE +++
+
+Finally we created and tested the Webhooks on GitHub:
+
++++PICTURE OF THE CREATED AND WORKING WEBHOOKS+++
+
+Finally to cover is the Github Repository. We created several branches by the end of the project:
+
++++PICTURES OF THE GITHUB BRANCHES+++
+
+We also were merging feature / file specific branches into teh dev branch and then merging into the main branch from there. This produced a clean feature branch model:
+
++++PICTURE OF FEATURE BRANCH MODEL+++
+
+### **Future Goals**
+
+There are additional features that would like to have implemented however didn't have enough time, there were:
+
+1)
+2)
+3)
+
+> ### **Final Words and Acknowledgements**
+
+The group would like to acknowledge the assistance from Jordan Harrison and Piers Barber in this project, it wouldn't have gotten completed without them.
+
+___
+## Project by Charlotte Cartwright, Emily Penrice, Ashleigh Francis, Samuel Thornton and Christian Window
+___
