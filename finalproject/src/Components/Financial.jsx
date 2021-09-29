@@ -1,25 +1,31 @@
+import Card from 'react-bootstrap/Card';
+
 const Financial = ({
     Fincitizen
 }) => {
-    const { transactionType, accountNumber, bank, cardNumber, sortCode, timeStamp, streetName, postcode, latitude, longitude, amount, payeeAccount, vendor, type } = Fincitizen;
+    const { transactionType, accountNumber, bank, cardNumber, sortCode, timestamp, streetName, postcode, latitude, longitude, amount, payeeAccount, vendor, type } = Fincitizen;
 
     return (
         <>
-            <p>Transaction Type: {transactionType}</p>
-            <p>Date of Birth: {bank}</p>
-            <p> Amount: {amount}</p>
-            <p> Card Number: {cardNumber}</p>
-            <p> Account Number: {accountNumber}</p>
-            <p> Sort Code: {sortCode}</p>
-            <p> Timestamp: {timeStamp}</p>
-            <p> Vendor: {vendor}</p>
-            <p> Street Name: {streetName}</p>
-            <p> Postcode: {postcode}</p>
-            <p> Latitude: {latitude}</p>
-            <p> Longitude: {longitude}</p>
-            <p> Payee Account: {payeeAccount}</p>
-            <p> Type: {type}</p>
-
+         <Card Text="dark">
+                <Card.Header><b>Financial Records</b></Card.Header>
+                <Card.Body>
+                <Card.Text>Transaction Type: {transactionType} </Card.Text>
+                <Card.Text>Date of Birth: {bank} </Card.Text>
+             <Card.Text> Amount: {amount} </Card.Text>
+             <Card.Text> Card Number: {cardNumber} </Card.Text>
+             <Card.Text> Account Number: {accountNumber} </Card.Text>
+             <Card.Text> Sort Code: {sortCode} </Card.Text>
+             <Card.Text> Timestamp: {timestamp} </Card.Text>
+             <Card.Text> Vendor: {vendor} </Card.Text>
+             <Card.Text> Street Name: {streetName} </Card.Text>
+             <Card.Text> Postcode: {postcode} </Card.Text>
+             <Card.Text> Latitude: {latitude} </Card.Text>
+             <Card.Text> Longitude: {longitude} </Card.Text>
+             <Card.Text> Payee Account: {payeeAccount} </Card.Text>
+             <Card.Text> Type: {type} </Card.Text>
+            </Card.Body>
+            </Card>
         </>
     );
 }

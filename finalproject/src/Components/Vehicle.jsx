@@ -1,20 +1,32 @@
+import Button from '@restart/ui/esm/Button';
+import Card from 'react-bootstrap/Card';
+import { useHistory } from "react-router";
+
 const Vehicle = ({
     Vehcitizen
 }) => {
+ 
     const { driverLicenceID, vehicleRegistrationNo, make, model, colour, anprPointId, timestamp, streetName, latitude, longitude } = Vehcitizen;
-
+    
     return (
         <>
-            <p> Driver Licence: {driverLicenceID}</p>
-            <p> Vehicle Registration: {vehicleRegistrationNo}</p>
-            <p> Make: {make}</p>
-            <p> Model: {model}</p>
-            <p> Colour: {colour}</p>
-            <p> ANPR Point: {anprPointId}</p>
-            <p> Timestamp: {timestamp}</p>
-            <p> Street Name: {streetName}</p>
-            <p> Latitude: {latitude}</p>
-            <p> Longitude: {longitude}</p>
+       
+        <Card Text="dark">
+                <Card.Header><b>Vehicle Records</b></Card.Header>
+                <Card.Body>
+            <Card.Text> Driver Licence: {driverLicenceID}</Card.Text>
+            <Card.Text> Vehicle Registration: {vehicleRegistrationNo}</Card.Text>
+            <Card.Text> Make: {make}</Card.Text>
+            <Card.Text> Model: {model}</Card.Text>
+            <Card.Text> Colour: {colour}</Card.Text>
+            <Card.Text> ANPR Point: {anprPointId}</Card.Text>
+            <Card.Text> Timestamp: {timestamp}</Card.Text>
+            <Card.Text> Street Name: {streetName}</Card.Text>
+            <Card.Text> Latitude: {latitude}</Card.Text>
+            <Card.Text> Longitude: {longitude}</Card.Text>
+            
+            </Card.Body>
+            </Card>
         </>
     );
 }

@@ -1,15 +1,24 @@
 
 import Mobile from './mobile';
+import { useHistory } from "react-router";
+import Button from '@restart/ui/esm/Button';
 
+const MobContainer = ({ calls }) => {
+  const history = useHistory();
 
-const MobContainer = ({calls}) => {
-
+  const changePage = (e) => {
+    e.preventDefault();
+    history.push('/Output');
+  }
   return (
     <>
       <h2><b>Mobile Record Results</b></h2>
-      <br/>
-      <br/>
-      {calls.map((Mobcitizen ) => <Mobile key={`${Mobcitizen.network}:${Mobcitizen.longitude} `} Mobcitizen = {Mobcitizen}/>) }
+      <br />
+      <form onSubmit={changePage}>
+        <Button variant="danger" type="onClick">Back</Button>
+      </form>
+      <br />
+      {calls.map((Mobcitizen) => <Mobile key={`${Mobcitizen.network}:${Mobcitizen.longitude} `} Mobcitizen={Mobcitizen} />)}
     </>
   );
 };
