@@ -2,32 +2,29 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useHistory } from "react-router";
 
-const Search = () => {
+const Search = ({setData}) => {
 
 
     const [forenames, setForenames] = useState('');
     const [surname, setSurname] = useState('');
     const [dateOfBirth, setdateOfBirth] = useState('');
-    const [data, setData] = useState("");
     const [error, setError] = useState('');
-
+    const history = useHistory();
+    
     const MakeRequest = (e) => {
         e.preventDefault();
-
+        
         console.log("hello");
         axios
-            .get('https://raw.githubusercontent.com/ashleigh-francis/Mock-Data/main/exampledata.json')
-            .then(({ data }) => setData(data))
+            .post('http://localhost:5000/getCitizenInfo',{forenames,surname,dateOfBirth})
+            .then(({ data }) => {
+                setData(data);
+                history.push('/CitizenCon');
+            })
             .catch((err) => setError(err.message));
-        //  useEffect(() => {
-        //         axios
-        //           .get('https://raw.githubusercontent.com/ashleigh-francis/Mock-Data/main/exampledata.json')
-        //           .then(({ data }) => setData(data))
-        //           .catch((err) => setError(err.message));
-        //       }, []); 
-        console.log(data);
-        console.log(error);
+
     }
     const Overview = ({ forenames, surname, dateOfBirth }) => {
         return (
@@ -40,8 +37,7 @@ const Search = () => {
     }
     return (
         <>
-            <form action="/CitizenCon">
-                {/* onSubmit={MakeRequest} */}
+            <form onSubmit={MakeRequest}>
                 <h1><b>Please Enter the Search Fields</b></h1>
                 <br />
                 <br />
@@ -77,7 +73,7 @@ const Search = () => {
                 />
                 <br />
                 <br />
-                <Button variant="danger" type="submit">Search</Button>
+                <Button variant="danger" type="submit" >Search</Button>
             </form>
         </>
     );
