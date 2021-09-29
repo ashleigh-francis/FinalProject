@@ -248,8 +248,9 @@ public class CitizenServiceDB implements CitizenService {
 	public List<UsersDTO> getUsers(Users users) {
 		List<UsersDTO> userDTO = new ArrayList<>();
 		List<Users> userList = this.repoU.findAll(Example.of(users));
-			userDTO.add(this.mapToDTO(users));
-		
+		for (int i = 0 ; i < userList.size(); i++) {
+			userDTO.add(this.mapToDTO(userList.get(i)));
+		}
 		return userDTO;
 	}
 
