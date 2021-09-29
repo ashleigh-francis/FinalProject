@@ -12,7 +12,7 @@ const MobContainer = ({ calls }) => {
   }
   return (
     <>
-      <h2><b>Mobile Record Results</b></h2>
+      <h2><b>Phone Record Results</b></h2>
       <br />
       <form onSubmit={changePage}>
         <Button variant="danger" type="onClick">Back</Button>

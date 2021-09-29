@@ -1,6 +1,4 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import Citizen from './Citizen';
+
 import Financial from './Financial';
 import { useHistory } from "react-router";
 import Button from '@restart/ui/esm/Button';

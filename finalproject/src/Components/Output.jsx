@@ -1,16 +1,10 @@
-import Text_Hider from "./Text_Hider";
-import { useState, useEffect } from "react";
+
+import { useState} from "react";
 import axios from "axios";
-import Financial from "./Financial";
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import React, { Table } from 'react-bootstrap';
-import CardGroup from 'react-bootstrap/CardGroup';
-import Citizen from "./Citizen";
+import React from 'react-bootstrap';
 import { useHistory } from "react-router";
 
 
@@ -32,7 +26,6 @@ const Output = ({ currentCitizen: { forenames, surname, dateOfBirth, homeAddress
             .then(({ data }) => {
                 setFinancials(data);
                 history.push('/FinancialRecords');
-                console.log(data);
             })
             .catch((err) => setError(err.message));
     }
@@ -42,8 +35,8 @@ const Output = ({ currentCitizen: { forenames, surname, dateOfBirth, homeAddress
             .post('http://localhost:5000/getMobileRecords', { forenames, surname, dateOfBirth })
             .then(({ data }) => {
                 setCalls(data);
-                history.push('/MobileRecords');
-                console.log(data);
+                history.push('/PhoneRecords');
+                
             })
             .catch((err) => setError(err.message));
     }
@@ -54,7 +47,6 @@ const Output = ({ currentCitizen: { forenames, surname, dateOfBirth, homeAddress
             .then(({ data }) => {
                 setVehicles(data);
                 history.push('/VehicleRecords');
-                console.log(data);
             })
             .catch((err) => setError(err.message));
     }
@@ -87,7 +79,7 @@ const Output = ({ currentCitizen: { forenames, surname, dateOfBirth, homeAddress
                 <Card.Header><b>Phone Records</b></Card.Header>
                 <Card.Body>
                     <form onSubmit={mobileRec}>
-                        <Button variant="danger" type="onClick" >Mobile Records</Button>
+                        <Button variant="danger" type="onClick" >Phone Records</Button>
                     </form>
                 </Card.Body>
             </Card>

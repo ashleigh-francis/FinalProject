@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -24,15 +24,6 @@ const Search = ({setData}) => {
                 history.push('/CitizenCon');
             })
             .catch((err) => setError(err.message));
-
-    }
-    const Overview = ({ forenames, surname, dateOfBirth }) => {
-        return (
-            <>
-                <h2>{forenames}{surname}</h2>
-                <p>Date of Birth: {dateOfBirth}</p>
-            </>
-        );
 
     }
     return (

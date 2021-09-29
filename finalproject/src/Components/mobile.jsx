@@ -8,7 +8,7 @@ const Mobile = ({
     return (
         <>
             <Card Text="dark">
-                <Card.Header><b>Mobile Records</b></Card.Header>
+                <Card.Header><b>Phone Records</b></Card.Header>
                 <Card.Body>
                     <Card.Text>Phone Number: {phoneNumber} </Card.Text>
                     <Card.Text>Network: {network} </Card.Text>

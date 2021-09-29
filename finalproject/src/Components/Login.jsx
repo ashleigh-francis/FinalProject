@@ -1,19 +1,36 @@
 import {useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from "axios";
+import { useHistory } from "react-router";
 
 const Login = () => {
     const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const [passwrd, setPassword] = useState('');
+    const [data, setData] = useState([]);
+    const [error, setError] = useState('');
+    const history = useHistory();
 
-    const printValues = e => {
+    const MakeRequest = (e) => {
         e.preventDefault();
-        console.log(username,password);
-    };
+        axios
+            .post('http://localhost:5000/getUsers',{username,passwrd})
+            .then(({ data }) => {
+                setData(data);
+                if (data.length === 1){
+                    history.push('/Search');
+                }
+                else{
+                    history.push('/');  
+                }
+            })
+            .catch((err) => setError(err.message));
+
+    }
 
     return (
         <>
-            <form action = "/Search">
+            <form onSubmit={MakeRequest}>
 
                 <h1><b>Welcome to the Citizen Database</b></h1>
                 <br/>
@@ -30,12 +47,10 @@ const Login = () => {
             <br/>
             <label>Password:</label>
             <br/>
-                {/* <input type="password"
-                name="password" */}
-                <input type="password" 
-                // className="form-control" 
+                <input 
+                type="password" 
                 placeholder="Enter password"
-                value={password}
+                value={passwrd}
                 onInput={e => setPassword(e.target.value)}/>
             <br/>
             <br/>
