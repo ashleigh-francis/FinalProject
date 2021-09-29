@@ -43,12 +43,15 @@ public class CitizenServiceDB implements CitizenService {
 	private MobileRepo repoM;
 	private UsersRepo repoU;
 
-	public CitizenServiceDB(CitizenRepo repo, VehicleRepo repoV, BankAccountRepo repoBA, MobileRepo repoM) {
+
+	public CitizenServiceDB(CitizenRepo repo, VehicleRepo repoV, BankAccountRepo repoBA, MobileRepo repoM,
+			UsersRepo repoU) {
 		super();
 		this.repo = repo;
 		this.repoV = repoV;
 		this.repoBA = repoBA;
 		this.repoM = repoM;
+		this.repoU = repoU;
 	}
 
 	public CitizenInfoDTO mapToDTO(Citizen Citizen
@@ -188,7 +191,7 @@ public class CitizenServiceDB implements CitizenService {
 	
 	public UsersDTO mapToDTO(Users users) {
 		UsersDTO dtoU = new UsersDTO();
-		dtoU.setUser(users.getUser());
+		dtoU.setUsername(users.getUsername());
 		dtoU.setPasswrd(users.getPasswrd());
 		
 		return dtoU;

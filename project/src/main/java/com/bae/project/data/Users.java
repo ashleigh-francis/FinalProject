@@ -1,32 +1,36 @@
 package com.bae.project.data;
 
 import java.util.Objects;
-
+import javax.persistence.Id;
 import javax.persistence.Entity;
 
 @Entity
 public class Users {
 	
-	private Integer Id;
-	private String User;
-	private String Passwrd;
+	@Id
+	private Integer id;
+	private String username;
+	private String passwrd;
 	
 	
 	public Users() {
 		super();
 	}
 
-	public Users(Integer id, String user, String passwrd) {
+
+	public Users(Integer id, String username, String passwrd) {
 		super();
-		Id = id;
-		User = user;
-		Passwrd = passwrd;
+		this.id = id;
+		this.username = username;
+		this.passwrd = passwrd;
 	}
+
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(Id, Passwrd, User);
+		return Objects.hash(id, passwrd, username);
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -37,37 +41,45 @@ public class Users {
 		if (getClass() != obj.getClass())
 			return false;
 		Users other = (Users) obj;
-		return Objects.equals(Id, other.Id) && Objects.equals(Passwrd, other.Passwrd)
-				&& Objects.equals(User, other.User);
+		return Objects.equals(id, other.id) && Objects.equals(passwrd, other.passwrd)
+				&& Objects.equals(username, other.username);
 	}
+
 
 	public Integer getId() {
-		return Id;
+		return id;
 	}
+
 
 	public void setId(Integer id) {
-		Id = id;
+		this.id = id;
 	}
 
-	public String getUser() {
-		return User;
+
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUser(String user) {
-		User = user;
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
+
 
 	public String getPasswrd() {
-		return Passwrd;
+		return passwrd;
 	}
 
+
 	public void setPasswrd(String passwrd) {
-		Passwrd = passwrd;
+		this.passwrd = passwrd;
 	}
+
 
 	@Override
 	public String toString() {
-		return "Users [Id=" + Id + ", User=" + User + ", Passwrd=" + Passwrd + "]";
+		return "Users [id=" + id + ", username=" + username + ", passwrd=" + passwrd + "]";
 	}
+
 
 }

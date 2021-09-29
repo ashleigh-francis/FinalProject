@@ -2,33 +2,34 @@ package com.bae.project.dto;
 
 public class UsersDTO {
 	
-	private String User;
-	private String Passwrd;
+	private String username;
+	private String passwrd;
 	
 	public UsersDTO() {
 		super();
 	}
 
-	public UsersDTO(String user, String passwrd) {
+	public UsersDTO(String username, String passwrd) {
 		super();
-		User = user;
-		Passwrd = passwrd;
+		this.username = username;
+		this.passwrd = passwrd;
 	}
 
-	public String getUser() {
-		return User;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUser(String user) {
-		User = user;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPasswrd() {
-		return Passwrd;
+		return passwrd;
 	}
 
 	public void setPasswrd(String passwrd) {
-		Passwrd = passwrd;
+		this.passwrd = passwrd;
 	}
 
+	
 }

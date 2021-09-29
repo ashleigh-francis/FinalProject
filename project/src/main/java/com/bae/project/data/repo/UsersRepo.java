@@ -8,6 +8,6 @@ import com.bae.project.data.Users;
 
 public interface UsersRepo extends JpaRepository<Users, Integer> {
 	
-	List<Users> findByUserNameIgnoreCase(String name);
+	List<Users> findByUsernameIgnoreCase(String name);
 	
 }

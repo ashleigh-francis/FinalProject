@@ -2,8 +2,10 @@ package com.bae.project.rest;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +25,7 @@ import com.bae.project.dto.UsersDTO;
 import com.bae.project.dto.VehicleInfoDTO;
 import com.bae.project.service.CitizenService;
 
+@CrossOrigin
 @RestController
 public class CitizenController {
 
@@ -33,7 +36,7 @@ public class CitizenController {
 		this.service = service;
 	}
 
-	@GetMapping("/getCitizenInfo")
+	@PostMapping("/getCitizenInfo")
 	public List<CitizenInfoDTO> getCitizenInfo(@RequestBody Citizen citizen) {
 		return this.service.getCitizenInfo(citizen);
 
@@ -43,27 +46,27 @@ public class CitizenController {
 //	public ResponseEntity<List<CitizenInfoDTO>> sortAndFilterDucks(@PathVariable String field, @PathVariable Direction direction, @RequestBody Citizen citizen) {
 //		return ResponseEntity.ok(this.service.sortAndFilterCitizen(direction, field, citizen));
 //	}
-	@GetMapping("/getVehicleInfo")
+	@PostMapping("/getVehicleInfo")
 	public List<VehicleInfoDTO> getVehicleInfo(@RequestBody VehicleRegistration vehicleRegistration,
 			VehicleObservations vehicleObservations, AnprCamera anprCamera) {
 		return this.service.getVehicleInfo(vehicleRegistration, vehicleObservations, anprCamera);
 
 	}
 
-	@GetMapping("/getMobileRecords")
+	@PostMapping("/getMobileRecords")
 	public List<MobileRecordsDTO> getMobileRecords(@RequestBody PeopleMobile peopleMobile,
 			MobileCallRecords mobileCallRecords, CellTower cellTower) {
 		return this.service.getMobileRecords(peopleMobile, mobileCallRecords, cellTower);
 
 	}
 
-	@GetMapping("/getFinancialRecords")
+	@PostMapping("/getFinancialRecords")
 	public List<FinancialRecordsDTO> getFinancialRecords(@RequestBody PeopleBankAccount peopleBankAccount) {
 		return this.service.getFinancialRecords(peopleBankAccount);
 
 	}
 	
-	@GetMapping("/getUsers")
+	@PostMapping("/getUsers")
 	public List<UsersDTO> getUsers(@RequestBody Users users) {
 		return this.service.getUsers(users);
 	}
