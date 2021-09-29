@@ -8,11 +8,13 @@ import com.bae.project.data.Citizen;
 import com.bae.project.data.MobileCallRecords;
 import com.bae.project.data.PeopleBankAccount;
 import com.bae.project.data.PeopleMobile;
+import com.bae.project.data.Users;
 import com.bae.project.data.VehicleObservations;
 import com.bae.project.data.VehicleRegistration;
 import com.bae.project.dto.CitizenInfoDTO;
 import com.bae.project.dto.FinancialRecordsDTO;
 import com.bae.project.dto.MobileRecordsDTO;
+import com.bae.project.dto.UsersDTO;
 import com.bae.project.dto.VehicleInfoDTO;
 
 public interface CitizenService {
@@ -27,4 +29,5 @@ public interface CitizenService {
 	List<MobileRecordsDTO> getMobileRecords(PeopleMobile peopleMobile, MobileCallRecords mobileCallRecords,
 			CellTower cellTower);
 
+	public List<UsersDTO> getUsers(Users users);
 }
