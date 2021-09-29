@@ -18,16 +18,19 @@ import com.bae.project.data.EposTransactions;
 import com.bae.project.data.MobileCallRecords;
 import com.bae.project.data.PeopleBankAccount;
 import com.bae.project.data.PeopleMobile;
+import com.bae.project.data.Users;
 import com.bae.project.data.VehicleObservations;
 import com.bae.project.data.VehicleRegistration;
 import com.bae.project.data.repo.BankAccountRepo;
 import com.bae.project.data.repo.CitizenRepo;
 import com.bae.project.data.repo.MobileRepo;
+import com.bae.project.data.repo.UsersRepo;
 import com.bae.project.data.repo.VehicleRepo;
 import com.bae.project.dto.CitizenInfoDTO;
 import com.bae.project.dto.FinancialRecordsDTO;
 import com.bae.project.dto.MobileRecordsDTO;
 import com.bae.project.dto.TransactionType;
+import com.bae.project.dto.UsersDTO;
 import com.bae.project.dto.VehicleInfoDTO;
 
 @Service
@@ -38,6 +41,7 @@ public class CitizenServiceDB implements CitizenService {
 	private VehicleRepo repoV;
 	private BankAccountRepo repoBA;
 	private MobileRepo repoM;
+	private UsersRepo repoU;
 
 	public CitizenServiceDB(CitizenRepo repo, VehicleRepo repoV, BankAccountRepo repoBA, MobileRepo repoM) {
 		super();
@@ -181,6 +185,14 @@ public class CitizenServiceDB implements CitizenService {
 
 		return dtoM;
 	}
+	
+	public UsersDTO mapToDTO(Users users) {
+		UsersDTO dtoU = new UsersDTO();
+		dtoU.setUser(users.getUser());
+		dtoU.setPasswrd(users.getPasswrd());
+		
+		return dtoU;
+	}
 
 //	@Override
 //	public List<CitizenInfoDTO> sortAndFilterCitizen(Direction direction, String field, Citizen citizen) {
@@ -230,6 +242,15 @@ public class CitizenServiceDB implements CitizenService {
 			}
 		}
 		return mobileDTO;
+	}
+	
+	@Override
+	public List<UsersDTO> getUsers(Users users) {
+		List<UsersDTO> userDTO = new ArrayList<>();
+		List<Users> userList = this.repoU.findAll(Example.of(users));
+			userDTO.add(this.mapToDTO(users));
+		
+		return userDTO;
 	}
 
 }
