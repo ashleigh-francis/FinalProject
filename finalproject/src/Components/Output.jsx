@@ -10,99 +10,86 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import React, { Table } from 'react-bootstrap';
 import CardGroup from 'react-bootstrap/CardGroup';
+import Citizen from "./Citizen";
+import { useHistory } from "react-router";
 
 
-const Output = () => {
+const Output = ({ currentCitizen: { forenames, surname, dateOfBirth, homeAddress, sex, placeOfBirth },setFinancials,setCalls,setVehicles }) => {
 
-    const maxLength = 25
-    const financialText = "Click to view information."
-    const phoneText = "Click to view information."
-    const vehicleText = "Click to view information."
-    const forenames = "Joe"
-    const surname = "Bloggs"
-    const homeAddress = "1 Street Lane"
-    const dateOfBirth = "01/01/1990"
-    const placeOfBirth = "Manchester"
-    const sex = "Male"
-    const citizenName = "Joe Bloggs"
-
-    const [Financials, setFinancials] = useState([]);
     const [error, setError] = useState('');
-
-    useEffect(() => {
-        axios
-            .get('https://raw.githubusercontent.com/ashleigh-francis/Mock-Data/main/exampledata.json')
-            .then(({ data }) => setFinancials(data))
-            .catch((err) => setError(err.message));
-    }, []);
+    const history = useHistory();
 
     const financialsRec = (e) => {
-        return (
-            <>
-                {Financials.map(({
-                    forenames, surname, dateOfBirth
-                }) => <Financial key={`${forenames}${surname} : ${dateOfBirth}`} forenames={forenames} surname={surname} dateOfBirth={dateOfBirth} />)}
-            </>
-        );
+        e.preventDefault();
+        axios
+            .post('http://localhost:5000/getFinancialRecords',{forenames,surname,dateOfBirth})
+            .then(({ data }) => {
+                setFinancials(data);
+                history.push('/FinancialRecords');
+                console.log(data);
+            })
+            .catch((err) => setError(err.message));
+    }
+    const mobileRec = (e) => {
+        e.preventDefault();
+        axios
+            .post('http://localhost:5000/getMobileRecords',{forenames,surname,dateOfBirth})
+            .then(({ data }) => {
+                setCalls(data);
+                history.push('/MobileRecords');
+                console.log(data);
+            })
+            .catch((err) => setError(err.message));
+    }
+    const vehicleRec = (e) => {
+        e.preventDefault();
+        axios
+            .post('http://localhost:5000/getVehicleInfo',{forenames,surname,dateOfBirth})
+            .then(({ data }) => {
+                setVehicles(data);
+                history.push('/VehicleRecords');
+                console.log(data);
+            })
+            .catch((err) => setError(err.message));
     }
     return (
         <>
-            <Table >
-                <thead>
-                    <tr>
-                        <th colSpan="3"><h1><b>Currently showing information for {citizenName} </b></h1> <Card text="dark">
-                            <Card.Header><h4>Biographical Information</h4></Card.Header>
-                            <Card.Body>
-                                <Card.Title></Card.Title>
-                                <Card.Text>
-                                    <h5><b>Name: {forenames} {surname}</b></h5>
-                                    <h5>Home Address: {homeAddress}</h5>
-                                    <h5>Date of Birth: {dateOfBirth}</h5>
-                                    <h5>Place of Birth: {placeOfBirth}</h5>
-                                    <h5>Sex: {sex}</h5>
-                                </Card.Text>
-                            </Card.Body>
-                        </Card> </th>
-
-                    </tr>
-                </thead>
-                <tbody>
-
-
-                    <tr>
-                        <td>
-                            <Card text="dark">
-                                <Card.Header><b>Financial Records</b></Card.Header>
-                                <Card.Body>
-                                    <Card.Text>
-                                        <Text_Hider text={financialText} maxLength={maxLength} />
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </td>
-                        <td>
-                            <Card text="dark">
-                                <Card.Header><b>Phone Records</b></Card.Header>
-                                <Card.Body>
-                                    <Card.Text>
-                                        <Text_Hider text={phoneText} maxLength={maxLength} />
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </td>
-                        <td>
-                            <Card text="dark">
-                                <Card.Header><b>Vehicle Records</b></Card.Header>
-                                <Card.Body>
-                                    <Card.Text>
-                                        <Text_Hider text={vehicleText} maxLength={maxLength} />
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </td>
-                    </tr>
-                </tbody>
-            </Table>
+            <Card text="dark">
+                <Card.Header><h4>Biographical Information</h4></Card.Header>
+                <Card.Body>
+                    <Card.Text><b>Name: {forenames} {surname}</b> </Card.Text>
+                    <Card.Text>Home Address: {homeAddress} </Card.Text>
+                    <Card.Text>Date of Birth: {dateOfBirth} </Card.Text>
+                    <Card.Text>Place of Birth: {placeOfBirth} </Card.Text>
+                    <Card.Text>Sex: {sex} </Card.Text>
+                </Card.Body>
+            </Card>
+            <Card text="dark">
+                <Card.Header><b>Financial Records</b></Card.Header>
+                <Card.Body>
+                      <form onSubmit={financialsRec}>
+                        <Button variant="danger" type="onClick" >Financial Records</Button>
+                        </form>
+                </Card.Body>
+            </Card>
+            <Card text="dark">
+                <Card.Header><b>Phone Records</b></Card.Header>
+                <Card.Body>
+                        <form onSubmit={mobileRec}>
+                            <Button variant="danger" type="onClick" >Mobile Records</Button>
+                        </form>
+                </Card.Body>
+            </Card>
+            <Card text="dark">
+                <Card.Header><b>Vehicle Records</b></Card.Header>
+                <Card.Body>
+                    
+                        <form onSubmit={vehicleRec}>
+                            <Button variant="danger" type="onClick" >Mobile Records</Button>
+                        </form>
+                   
+                </Card.Body>
+            </Card>
         </>
     )
 }

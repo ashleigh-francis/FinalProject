@@ -37,7 +37,7 @@ body{
   position: absolute;
   left: 0;
   width: 100%;
-  overflow: scroll;
+  /* overflow: scroll; */
   background-color: whitesmoke;
 }
 
@@ -46,6 +46,6 @@ body{
   position: absolute;
   left: 0;
   width: 100%;
-  overflow: scroll;
+  /* overflow: scroll; */
   background-color: whitesmoke;
 }
