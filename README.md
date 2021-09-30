@@ -12,8 +12,8 @@ This is my README for our Final Project. Please ensure to read the whole documen
 4. Kanban Board
 5. Risk Assessment
 6. Network Diagram and Structure
-7. CI Pipeline Diagram and Structure
-8. Issues and Resolutions
+7. Backend
+8. Frontend
 9. Future Goals
 10. Final Words and Acknowledgements
 
@@ -43,8 +43,6 @@ An exhaustive list of the technologies, methodologies and best of breed practice
 
 We decided during the initial research and planning phase to use Lucid Chart to easily visualise and produce various diagrams which would be used for reference during the project and documentation post-completion of the project. The below pictures show the network diagram, [Located Here](https://1drv.ms/u/s!AgYV89-MT2ojkVTfEujMFCz0gIlI "Network Diagram"), CI pipeline diagram, [Located Here](https://1drv.ms/u/s!AgYV89-MT2ojkRkzu8szWE7NqIrq?e=g1RQhU "CI Pipeline Diagram"), and progression of the Jira board as we moved through the project workload, [Located Here](https://1drv.ms/u/s!AgYV89-MT2ojkVVjMmqi42hP9f9Z "Jira Board In Progress") and [Located Here](https://onedrive.live.com/?cid=236A4F8CDFF31506&id=236A4F8CDFF31506%212203&parId=236A4F8CDFF31506%212175&o=OneUp "Jira Board At End Of Project"). 
 
-++++ NEED TO ADD CI PIPELINE DIAGRAM AND FINAL JIRA BOARD PICTURES ++++
-
 Here you can see our wireframe of what we wanted our project to look like:
 
 ![Imgur](https://i.imgur.com/E02TRZp.png)
@@ -57,13 +55,9 @@ The above pictures showcase the planning phase of our project.
 
 Our Kanban board utilised the Jira online software, and was using the model of an Agile Scrum Board with two sprints (one for the first week, and another for the second). The board is available [here](https://demo-af.atlassian.net/jira/software/projects/FP/boards/5 "Jira Board") for viewing. We made use of six epics: AWS, Frontend, Backend, Testing, Database and Documentation. Below are two pictures which contains come examples of the stories and showing the progression of the board throughout the project. As you can see from this we utilised for prioritisation, ownership, story point estimate and made effective use of the commenting functionality on each story. As we began working, made progress or completed worked on each of the stories we updated them in real time in order to ensure that the board was both up to date and accurate so that we knew what each of the team members were working on and to be able to visualise the overall progress being made on the project. 
 
-#### First picture in progress in the middle of the second sprint
+#### Picture in progress in the middle of the second sprint
 
 ![Imgur](https://i.imgur.com/3bDlZMj.png))
-
-#### Second picture at the end of the project
-
-+++ PICTURE TO BE INSERTED +++
 
  ### **Risk Assessment**
 
@@ -72,11 +66,11 @@ At the start of the project we created a risk assessment that we intended on kee
 We updated the risk assessment several times (10 versions total) throughout our project due to finding different risks as we progressed through the project. All of the risk assessments will be made available in the resources section of this document, or [here](https://1drv.ms/u/s!AgYV89-MT2ojkS4FdK-GI2_Yos_M?e=zM3bBW "Link to Risk Assessments"). Below are pictures of the first, fifth and tenth risk assessments so that we can show the progression of these risk assessments as 'living documents' throughout the life of the sprint and project. Multiple versions of this document were created due to the shifting risk of the project during it's life. Though there are different versions of this document, it is cumulative, with the final document being the most up to date and further having all the most up to date reflections of past risks.
 
 #### Start of Project Risk Assessment
-++ INSERT SCREENSHOT HERE ++
+![Imgur](https://i.imgur.com/yY2h06W.png)
 #### Middle of Project Risk Assessment
-++ INSERT SCREENSHOT HERE ++
+![Imgur](https://i.imgur.com/AR0322v.png)
 #### End of Project Risk Assessment
-++ INSERT SCREENSHOT HERE ++
+![Imgur](https://i.imgur.com/gr0t2p9.png)
 
 > ### **Network Diagram and Structure**
 
@@ -89,13 +83,6 @@ To start - the network diagram below shows what we aimed to achieve and had thou
 We utilised AWS's VPC creation wizard in order to automate most of the processes.
 
 The VPC uses an IPv4 CIDR block of 172.10.0.0/16. The public subnet uses the IP range 172.10.1.0/24 linked to the internet gateway by the route table. The private subnet uses 172.10.2.0/24 and is linked to the NAT gateway by routetable. The NAT Gateway links the private subnet to the public subnet so that it can be accessed using either of the manager virtual machines as a bastion host.
-
-#### Public Security Group
-+++ INSERT SCREENSHOT HERE +++
-
-#### Private Security Group
-
-+++ INSERT SCREENSHOT HERE +++
 
 #### SSH Access for Devs and Jenkins Open
 
@@ -121,19 +108,16 @@ Additionally the managers also had SQL core installed on it, so that we could ac
 
 Following this we cloned down the repository containing the application that we were required to deploy to the cloud platform. Initially we checked through the files to ensure we had all the pertinent information to hand including any ports that were required for the application to run properly and performed research on the ports required for the Docker Swarm we were to create. We double checked the security groups and ensured that these ports were open on the security group to make sure that no network issue would cause the application not to work. 
 
-From here we went about creating three Dockerfiles, one each for the frontend, backend and database. We also created the NGINX.conf. The pictures below show the Dockerfiles for the frontend, backend, database and the NGINX.conf file in that order.
+From here we went about creating three Dockerfiles, one each for the frontend, backend and database. We also created the NGINX.conf. The pictures below show the Dockerfiles for the frontend, database and the NGINX.conf file in that order.
 
 #### Frontend Dockerfile
-+++ Insert Picture Here +++
+![Imgur](https://i.imgur.com/DQSAAcQ.png)
 
 #### Backend Dockerfile
-+++ Insert Picture Here +++
-
-#### Database Dockerfile
-+++ Insert Picture Here +++
+![Imgur](https://i.imgur.com/3txR0lO.png)
 
 #### NGINX Configuration File
-+++ Insert Picture Here +++
+![Imgur](https://i.imgur.com/vFHalH2.png)
 
 > Testing the work so far
 
@@ -142,61 +126,77 @@ With this work completed we decided it was a good point at which to test out our
 * The docker images were created using the `docker build` commands.
 * NGINX also required the use of the `--mount` options for the nginx.conf file to ensure that this was setup appropriately for the project.
 
-This confirmed that what we had completed so far was functional. At this point we pushed to images to DockerHub knowing that these images would fulfil the needs of the project.
-
-+++Image of dockerhub images+++
+This confirmed that what we had completed so far was functional. At this point we pushed to images to a locally setup registry: `docker run -d -p 5000:5000 --restart=always --name registry registry:2`.
 
 We then created the docker-compose.yaml file for the swarm orchestration. Please see this pictured below.
 
 #### Docker-Compose.yaml file.
-+++Docker-Compose.yaml picture +++
+![Imgur](https://i.imgur.com/LXknF5a.png)
 
-Once this was created we initiated the swarm on the EC2 Instance named "Manager#1" using the command `docker swarm init` and added "Manage#2" as the second manager. We then proceeded to add the workers to the swarm as well.Finally to confirm that the manager and worker were setup properly and both in the swarm, we ran `docker node ls` to produce the below output.
+We then ran this with `docker-compose build`, `docker-compose push` and finally `docker-compose up`. This ran out containers:
 
-#### Docker Swarm Picture
+#### Picture of the running containers
+![Imgur](https://i.imgur.com/h94KIEB.png)
 
-+++DOCKER SWARM NODE PICTURE+++
+This leads us to the application being publically available on the instances IP address.
 
-Finally to ensure that the work so far worked with the docker swarm the command `docker stack deploy --compose-file docker-compose.yaml final_project` was run. Containers were then deployed to each of the VM's, as pictured below:
+![Imgur](https://i.imgur.com/CHI29XY.png)
 
-+++PICTURE OF CONTAINERS SHOWING THEY'RE UP AND RUNNING+++
+### **GitHub Repo**
 
-### **CI Pipeline Diagram and Structure**
-
-At this point we took stock of everything we had done and confirmed that the network was secure, the images were appropriately built, the swarm was functioning correctly and the application was accessible both internally and externally. Risk assessments were being kept up to date with the issues we had faced and the Jira board was showing good progression of tasks and that we've put outselves in a great position to finish the minimum viable product early so that we could start looking at additional features (see MoSCoW prioritisation list and MVP from the planning overview picture earlier in the document).
-
-#### CI Pipeline Diagram
-
-+++ PICTURE OF DIAGRAM FOR THE CI PIPELINE +++
-
-With the above overview picture in mind we set about creating the Jenkins Pipeline.
-
-1) Installed Jenkins onto the manager server, and ran the initial setup.
-2)Created a pipeline, including build triggers, and some additional quality of life features for example limiting the numnber of builds to 5 as to not become cumbersome, and creating a link to the github repository for ease of access.
-
-From here we were satisfied that this was the Jenkins side of the project was setup and that we needed to move onto the Jenkinsfile that would be held on the GitHub Repository. Please see this pictured below:
-
-+++ PICTURE OF THE JENKINSFILE +++
-
-Finally we created and tested the Webhooks on GitHub:
-
-+++PICTURE OF THE CREATED AND WORKING WEBHOOKS+++
-
-Finally to cover is the Github Repository. We created several branches by the end of the project:
-
-+++PICTURES OF THE GITHUB BRANCHES+++
+![Imgur](https://i.imgur.com/i7YXtPr.png)
 
 We also were merging feature / file specific branches into teh dev branch and then merging into the main branch from there. This produced a clean feature branch model:
 
-+++PICTURE OF FEATURE BRANCH MODEL+++
+![Imgur](https://i.imgur.com/vymsPYs.png)
+
+### **Backend**
+
+Our Backend application is a Spring Boot application running java and Maven. Using the spring boot framework has allowed us a rapid and simple deployment. 
+
+Building of the project 
+
+We started off by creating 15 different entities for each table that we felt were needed to complete the scenario. We then created all other required files like the controller and services. Next, we went through all the entities created, linking them through many to one/one to many relationships as well as specifying the columns needed to join the tables correctly. 
+
+We also created a new table in the database that contains usernames and passwords for the users that will have permission to access this application. This allowed us to create a login function to the application controlling who can make searches for suspects information. 
+
+Once the relationships were created, we started writing our DTOs (Data Transfer Objects), which allowed us to pick and choose what data we wanted to send to the frontend. As a group we decided that we would want 5 different types of DTO, as this would allow us to split up the information we were given as well as separate the information easily onto different pages. As a result of us having 5 DTOs, this also required us to have 5 mapToDTO methods that specified what information was coming from which tables. However, another result was that it required us to have 5 different repos that extended the JpaRepository library to allow us access to already exiting methods. 
+
+When creating our get request functions in the controller we decided that we wanted to specify who we were trying to get information off by putting their forename, surname and date of birth into the body of a request meaning you can be more specific in who you are looking for as multiple people have the same first name. However, this did mean that we could no longer use the default @GetMapping this is because this annotation can't take in a request containing a body. So, we deiced to you the annotation @PostMapping as this allowed us to send a request with information inside the request body. 
+
+Running the project 
+
+To be able to run the java application the user must have access to the database. The purpose of our app is to query a database using requests from the frontend (or postman) and return the required information. Without database access this cannot happen. 
+
+Therefore, while the database and DevOps environment was being built, we decided to create a mock database containing mock data allowing us to test our java application while not having access to correct information. This turned out to be very useful as once the mock database was up we ran the java application which led us to find out that certain relationship links weren't working as the two columns that needed joining didn’t have the same column names. 
+
+Future Goals 
+
+We are very happy with the amount of work we have been able to get done in the time period there is a lot more goals that we would like to be completed if there was more time available.  
+
+The first goal that we would like to be completed would be to have some automatic testing that we could run like unit tests and Integration testing. We preferably would have like to had it done in the original time frame however under the pressure of time and wanting to have a working application to show we decided to hold off on testing till we had a working application, this led to not having any time to complete test. Therefore, this is one off our main goals that we would like to achieve if there were more time, as well as one is most important goals we have.  
+
+Another goal that we would want to have completed if there were more time would be that whenever a request for a person's information is made JavaScript would automatically write to a text file or a database with the user's login username as well as who that user has searched for. This is a goal we wanted to be completed because of the sensitive information stored in the database we would want to keep track of who is accessing the what information and when.  
+
+### **Frontend Application** 
+
+Our frontend application is a react application written in JSX. We decided to make a react application so that our frontend is a single page application meaning that the application never changes page, but instead re-renders the page when required. When the application first runs a login page should load, one you have entered your credentials and hit submit it will check that the users' credentials are in the user table. Once they have been checked the page will be re-rendered to show the search page. 
+
+Once the search page appears and the user will input the Citizens forenames surnames and dateOfBirth this will then send a request to java that will grab all the Citizens that matches the information the user entered. The page will re-render to output all the Citizens that meets the input. There is also a button at the top of the page, which when clicked will send the user back to the search page we added this function a user's trying to search for a Citizen that doesn’t exist they can go back and make a different request. Now the page has loaded with each Citizen that matched the request there is an information button next to each citizen when clicked brings up all information about that specific citizen.  
+
+Once all the information about the citizen is outputted there is three buttons financial records, phone records, vehicle records. When each button is clicked it will render the page to out put the relevant data. The request used to return the data is done through axios.
 
 ### **Future Goals**
 
-There are additional features that would like to have implemented however didn't have enough time, there were:
+We are very happy with the amount of work we have been able to get done in the time period there is a lot more goals that we would like to be completed if there was more time available.  
 
-1)
-2)
-3)
+The first goal that we would like to be completed would be to have some automatic testing that we could run like unit tests and Integration testing. We preferably would have like to had it done in the original time frame however under the pressure of time and wanting to have a working application to show we decided to hold off on testing till we had a working application, this led to not having any time to complete test. Therefore, this is one off our main goals that we would like to achieve if there were more time, as well as one is most important goals we have.  
+
+Another goal that we would want to have completed if there were more time would be that whenever a request for a person's information is made JavaScript would automatically write to a text file or a database with the user's login username as well as who that user has searched for. This is a goal we wanted to be completed because of the sensitive information stored in the database we would want to keep track of who is accessing the what information and when.
+
+Running the project 
+
+To be able to run the react application the user must have access to the java backend. The purpose of our app is to send a http request to the backend that queries a database. Therefore, the frontend cannot run correctly without having access to both the backend and the database. 
 
 > ### **Final Words and Acknowledgements**
 
